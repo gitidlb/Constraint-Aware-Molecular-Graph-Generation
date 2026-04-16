@@ -1,4 +1,6 @@
-Complete Cometh conda env setup.
+# How to run Cometh sampling
+
+Complete Cometh conda env setup in cometh folder.
 
 extra pip installs:
 ```
