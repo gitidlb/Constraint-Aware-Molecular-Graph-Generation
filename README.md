@@ -53,7 +53,6 @@ Both methods:
 - Apply a repair step during sampling
 - Continue the reverse diffusion process
 
----
 
 ## Method 1: Delete-Based Constraint
 
@@ -93,7 +92,6 @@ general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generatio
 hydra.run.dir=/home/{computingID}/outputs_delete
 ```
 
----
 
 ## Method 2: Gradual Constraint (Bond Adjustment)
 
