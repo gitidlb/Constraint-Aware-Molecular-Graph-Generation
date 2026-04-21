@@ -93,6 +93,34 @@ hydra.run.dir=/home/{computingID}/outputs_delete
 ```
 
 
+### Adjusting When the Constraint is Applied
+
+The constraint is applied during the **last portion of the reverse diffusion steps**.
+
+In `abstract_diffusion_model_delete.py`, locate:
+
+```python
+if t_int <= max(1, int(0.1 * self.T)):
+    z_s = self.project_to_valency_constraint(z_s)
+```
+
+- `0.1 * self.T` means the constraint is applied in the **last 10% of sampling steps**
+
+You can modify this value to control when the constraint is applied:
+
+| Value | Effect |
+|------|--------|
+| `0.05 * self.T` | very late (minimal interference) |
+| `0.1 * self.T`  | late (default) |
+| `0.2 * self.T`  | earlier |
+| `0.5 * self.T`  | much earlier (stronger constraint influence) |
+
+Example (apply in last 20%):
+
+```python
+if t_int <= max(1, int(0.2 * self.T)):
+
+
 ## Method 2: Gradual Constraint (Bond Adjustment)
 
 ### Description
