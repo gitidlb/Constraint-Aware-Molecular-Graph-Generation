@@ -175,18 +175,3 @@ hydra.run.dir=/home/{computingID}/outputs_gradual
   - `outputs_delete`
   - `outputs_gradual`
 
-
-
-## Summary
-
-| Method   | Strategy              | Behavior            |
-|----------|----------------------|--------------------|
-| Delete   | Remove bonds         | Aggressive repair  |
-| Gradual  | Adjust bond orders   | Controlled repair  |
-
-
-
-## Observation
-
-These methods enforce valency as a hard constraint during sampling.  
-However, experimental results show that **local repair alone is insufficient to ensure full molecule-level validity**, highlighting the difficulty of enforcing global constraints through local modifications.
