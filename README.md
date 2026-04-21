@@ -54,6 +54,7 @@ Both methods:
 - Continue the reverse diffusion process
 
 
+
 ## Method 1: Delete-Based Constraint
 
 ### Description
@@ -92,7 +93,6 @@ general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generatio
 hydra.run.dir=/home/{computingID}/outputs_delete
 ```
 
-
 ### Adjusting When the Constraint is Applied
 
 The constraint is applied during the **last portion of the reverse diffusion steps**.
@@ -119,6 +119,8 @@ Example (apply in last 20%):
 
 ```python
 if t_int <= max(1, int(0.2 * self.T)):
+```
+
 
 
 ## Method 2: Gradual Constraint (Bond Adjustment)
@@ -159,3 +161,32 @@ encoding=rrwp \
 general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
 hydra.run.dir=/home/{computingID}/outputs_gradual
 ```
+
+
+
+## Important Notes
+
+- Only **one constraint method can be used at a time**  
+  (controlled via the import in `diffusion_models.py`)
+
+- No changes to `main.py` or training are required
+
+- Use separate output directories to avoid overwriting results:
+  - `outputs_delete`
+  - `outputs_gradual`
+
+
+
+## Summary
+
+| Method   | Strategy              | Behavior            |
+|----------|----------------------|--------------------|
+| Delete   | Remove bonds         | Aggressive repair  |
+| Gradual  | Adjust bond orders   | Controlled repair  |
+
+
+
+## Observation
+
+These methods enforce valency as a hard constraint during sampling.  
+However, experimental results show that **local repair alone is insufficient to ensure full molecule-level validity**, highlighting the difficulty of enforcing global constraints through local modifications.
