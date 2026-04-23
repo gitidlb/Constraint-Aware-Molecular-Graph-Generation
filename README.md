@@ -21,7 +21,7 @@ Make a checkpoints folder in the cometh folder, and download the QM9 checkpoints
 
 Additional setup:
 Create a Wandb account.
-Provide account to Sabrina to join constrainedGenAI team.
+Provide account to Sabrina to join constrainedGenAI team or create your own Wandb team.
 ```
 pip install wandb weave
 ```
