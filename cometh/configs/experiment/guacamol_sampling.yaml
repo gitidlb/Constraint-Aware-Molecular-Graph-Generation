@@ -1,4 +1,6 @@
 # @package _global_
+defaults:
+  - override /dataset: guacamol
 general:
     name : 'guacamol_no_h_marginal'
     gpus : 1
