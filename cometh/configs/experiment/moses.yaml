@@ -1,4 +1,6 @@
 # @package _global_
+defaults:
+  - override /dataset: moses
 general:
     name : 'moses_no_h_marginal'
     gpus : 3
@@ -31,7 +33,7 @@ model:
     corrector_num_steps: 10
     corrector_tau_multiplier: 0.1
     hidden_mlp_dims: {'X': 256, 'E': 128, 'y': 64}
-    hidden_dims: { 'dx': 256, 'de': 64, 'dy': 128, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 256}
+    hidden_dims: { 'dx': 256, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 64}
 
 dataset:
     remove_h: True

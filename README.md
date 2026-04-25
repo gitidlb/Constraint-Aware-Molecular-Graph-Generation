@@ -18,7 +18,7 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9 checkpoints from the Cometh GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9, MOSES, and GuacaMol checkpoints from the Cometh GitHub repository.
 
 Additional setup:
 Create a Wandb account.
@@ -38,13 +38,23 @@ Example to run sampling:
 ```
 python main.py +experiment=qm9_sampling.yaml encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt hydra.run.dir=/home/{computingID}/outputs
 ```
+Sampling can be performed on any of the three dataset, but the MOSES and GuacaMol datasets need the following argument replacement for the sampling compared to QM9:
+```
+encoding=rrwp_moses
+```
 
 Extra note: 
 Make sure python environment is 3.9 to ensure that graph-tools import works.
-You can do the following as a potential solution:
+The likely solution is to ensure you are not in a stacked conda environment system, so perform the following until no new changes to the terminal are presented:
 ```
-export PATH=/home/{computingID}/.conda/envs/cometh/bin:$PATH
+conda deactivate
 ```
+Afterwards, you should be able to run the cometh conda environment and run the sampling. This solution is especially key if you notice that either of the following provides 3.11 and the cometh conda environment's bin folder has python 3.9.
+```
+which python
+python --version
+```
+
 ## Hard Constraint (Valency) – Projection-Based Methods
 
 ### Overview

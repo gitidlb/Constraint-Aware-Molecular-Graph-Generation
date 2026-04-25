@@ -1,7 +1,7 @@
 name: 'guacamol'
 datadir: 'data/guacamol/guacamol_pyg/'
 remove_h: True
-pin_memory: True
-bucketloader: True
+pin_memory: False
+bucketloader: False
 filter: True
 thresholds: [30, 50, 90]

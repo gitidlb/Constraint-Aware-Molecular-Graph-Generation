@@ -60,10 +60,10 @@ atom_decoder = ["C", "N", "O", "F", "B", "Br", "Cl", "I", "P", "S", "Se", "Si"]
 
 
 class GuacamolDataset(InMemoryDataset):
-    train_url = ('https://figshare.com/ndownloader/files/13612760')
-    test_url = 'https://figshare.com/ndownloader/files/13612757'
-    valid_url = 'https://figshare.com/ndownloader/files/13612766'
-    all_url = 'https://figshare.com/ndownloader/files/13612745'
+    train_url = ('https://ndownloader.figshare.com/files/13612760')
+    test_url = 'https://ndownloader.figshare.com/files/13612757'
+    valid_url = 'https://ndownloader.figshare.com/files/13612766'
+    all_url = 'https://ndownloader.figshare.com/files/13612745'
 
     def __init__(self, split, root, filter_dataset, transform=None, pre_transform=None, pre_filter=None):
         self.split = split
