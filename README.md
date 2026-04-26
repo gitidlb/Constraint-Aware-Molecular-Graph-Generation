@@ -69,8 +69,6 @@ atom 1 = O
 bond(0,1) = double bond
 ```
 
----
-
 ## Constraint Implementations
 
 We use two versions of the diffusion model:
@@ -115,7 +113,7 @@ In both files:
 self.carbonyl_start_frac = getattr(cfg.model, "carbonyl_start_frac", 0.6)
 ```
 
-Tested values:
+We tested the following values:
 
 ```
 0.9 → early
@@ -131,7 +129,7 @@ Tested values:
 self.carbonyl_apply_prob = getattr(cfg.model, "carbonyl_apply_prob", 0.5)
 ```
 
-Tested values:
+We tested the following values:
 
 ```
 0.25, 0.5, 0.75
