@@ -201,13 +201,6 @@ Rename it for evaluation:
 mv filtered_valid_carbonyl_samples.txt generated_samples1.txt
 ```
 
-### Evaluation
-
-```bash
-python evaluate_structural_constraints.py --folder /path/to/output_filtered --max_molecules 2000
-python evaluate_valency_metrics.py --folder /path/to/output_filtered --max_molecules 2000
-```
-
 ### Note
 
 The filtering script uses a simple C=O detector, while the evaluation uses a stricter SMARTS-based definition.  
