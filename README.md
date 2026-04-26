@@ -162,6 +162,57 @@ general.final_model_samples_to_generate=2000
 - `hydra.run.dir` → output folder name  
 - `general.final_model_samples_to_generate` → number of samples to generate  
 
+---
+
+## Post-hoc Filtering
+
+We also apply a post-hoc filtering step to retain only high-quality molecules.
+
+This filtering keeps molecules that are:
+- RDKit valid  
+- Connected  
+- Contain a carbonyl group (C=O)  
+
+File used:
+```
+posthoc_filter_carbonyl.py
+```
+
+### Run filtering
+
+```bash
+python posthoc_filter_carbonyl.py \
+  --input_folder /path/to/generated_samples \
+  --output_folder /path/to/output_filtered \
+  --max_molecules 2000
+```
+
+### Output
+
+The script saves:
+
+```
+filtered_valid_carbonyl_samples.txt
+```
+
+Rename it for evaluation:
+
+```bash
+mv filtered_valid_carbonyl_samples.txt generated_samples1.txt
+```
+
+### Evaluation
+
+```bash
+python evaluate_structural_constraints.py --folder /path/to/output_filtered --max_molecules 2000
+python evaluate_valency_metrics.py --folder /path/to/output_filtered --max_molecules 2000
+```
+
+### Note
+
+The filtering script uses a simple C=O detector, while the evaluation uses a stricter SMARTS-based definition.  
+Therefore, the final carbonyl percentage may be slightly below 100%.
+
 
 ## Evaluation
 
