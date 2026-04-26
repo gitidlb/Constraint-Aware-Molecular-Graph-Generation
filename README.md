@@ -1,6 +1,6 @@
 # Constraint-Aware Molecular Graph Generation via Projection-Based Diffusion
 
-## How to run Cometh sampling
+## How to run COMETH sampling
 
 These instructions are for running Cometh on Rivanna.
 Complete Cometh conda env setup in cometh folder.
@@ -21,7 +21,7 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9, MOSES, and GuacaMol checkpoints from the Cometh GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9 checkpoint from the COMETH GitHub repository.
 
 ### Additional setup
 - Create a Wandb account.
