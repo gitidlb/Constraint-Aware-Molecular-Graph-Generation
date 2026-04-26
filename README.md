@@ -85,8 +85,6 @@ abstract_diffusion_model_carbonyl_soft.py
 ```
 - Constraint applied with a probability at each step
 
----
-
 ## How to Switch Constraint Mode
 
 Replace the default diffusion model with the desired constraint file:
@@ -100,8 +98,6 @@ or
 ```bash
 cp abstract_diffusion_model_carbonyl_soft.py models/abstract_diffusion_model.py
 ```
-
----
 
 ## Constraint Settings
 
@@ -121,8 +117,6 @@ We tested the following values:
 0.3 → late
 ```
 
----
-
 ### Probability (only for probabilistic constraint)
 
 ```python
@@ -134,8 +128,6 @@ We tested the following values:
 ```
 0.25, 0.5, 0.75
 ```
-
----
 
 ## Run Sampling
 
@@ -152,8 +144,6 @@ general.final_model_samples_to_generate=2000
 - `hydra.run.dir` → output folder name  
 - `general.final_model_samples_to_generate` → number of samples to generate  
 
-
----
 
 ## Evaluation
 
@@ -180,8 +170,6 @@ python evaluate_structural_constraints.py \
   --max_molecules 2000
 ```
 
----
-
 ### Valency Evaluation
 
 File:
@@ -202,19 +190,4 @@ python evaluate_valency_metrics.py \
   --folder /path/to/generated_samples \
   --max_molecules 2000
 ```
-
----
-
-## Provided Samples
-
-We include generated outputs for:
-
-```
-baseline_2000
-carbonyl_t03_*
-carbonyl_t06_*
-carbonyl_t09_*
-```
-
-These can be directly evaluated using the commands above.
 
