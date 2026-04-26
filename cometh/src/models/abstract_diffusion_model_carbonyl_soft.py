@@ -3,15 +3,19 @@ import os
 import math
 
 import torch
-import torch.nn.functional as F
 import pytorch_lightning as pl
 import wandb
 
 import utils
-from metrics.molecular_metrics import Molecule, check_stability, allowed_bonds
 from models.transformer_model import GraphTransformer
-from diffusion.noise_model import UniformRateConstant, UniformRateCosine, MarginalRateConstant, MarginalRateCosine
+from diffusion.noise_model import (
+    UniformRateConstant,
+    UniformRateCosine,
+    MarginalRateConstant,
+    MarginalRateCosine,
+)
 from metrics.train_metrics import TrainLoss, ValidationLoss
+from metrics.molecular_metrics import Molecule
 
 
 class AbstractDiffusionModel(pl.LightningModule):
@@ -21,19 +25,27 @@ class AbstractDiffusionModel(pl.LightningModule):
     train_iterations = None
     start_epoch_time = None
 
-    def __init__(self, cfg, dataset_infos, train_metrics, val_sampling_metrics, test_sampling_metrics,
-                 visualization_tools, extra_features, domain_features):
+    def __init__(
+        self,
+        cfg,
+        dataset_infos,
+        train_metrics,
+        val_sampling_metrics,
+        test_sampling_metrics,
+        visualization_tools,
+        extra_features,
+        domain_features,
+    ):
         super().__init__()
         nodes_dist = dataset_infos.nodes_dist
 
         self.cfg = cfg
         self.name = cfg.general.name
         self.T = cfg.model.diffusion_steps
-        self.molecular_dataset = dataset_infos.name in ['qm9', 'moses', 'guacamol']
+        self.molecular_dataset = dataset_infos.name in ["qm9", "moses", "guacamol"]
 
         self.node_dist = nodes_dist
         self.dataset_infos = dataset_infos
-        self.allowed_bonds = allowed_bonds
 
         self.extra_features = extra_features
         self.input_dims = self.extra_features.update_input_dims(dataset_infos.input_dims)
@@ -45,7 +57,8 @@ class AbstractDiffusionModel(pl.LightningModule):
         self.train_loss = TrainLoss(
             train=True,
             lambda_train=self.cfg.model.lambda_train
-            if hasattr(self.cfg.model, "lambda_train") else self.cfg.train.lambda0
+            if hasattr(self.cfg.model, "lambda_train")
+            else self.cfg.train.lambda0,
         )
         self.train_metrics = train_metrics
 
@@ -54,8 +67,14 @@ class AbstractDiffusionModel(pl.LightningModule):
         self.val_loss = ValidationLoss()
         self.test_loss = ValidationLoss()
 
-        self.save_hyperparameters(ignore=['train_metrics', 'val_sampling_metrics', 'test_sampling_metrics',
-                                          'dataset_infos'])
+        self.save_hyperparameters(
+            ignore=[
+                "train_metrics",
+                "val_sampling_metrics",
+                "test_sampling_metrics",
+                "dataset_infos",
+            ]
+        )
 
         self.visualization_tools = visualization_tools
         self.model = GraphTransformer(
@@ -64,7 +83,7 @@ class AbstractDiffusionModel(pl.LightningModule):
             hidden_mlp_dims=cfg.model.hidden_mlp_dims,
             hidden_dims=cfg.model.hidden_dims,
             output_dims=self.output_dims,
-            encoding_config=cfg.encoding
+            encoding_config=cfg.encoding,
         )
 
         if cfg.model.transition == "uniform":
@@ -72,22 +91,25 @@ class AbstractDiffusionModel(pl.LightningModule):
                 self.noise_model = UniformRateCosine(cfg=cfg, output_dims=self.output_dims)
             elif cfg.model.schedule == "constant":
                 self.noise_model = UniformRateConstant(cfg=cfg, output_dims=self.output_dims)
+
         elif cfg.model.transition == "marginal":
-            print(f"Marginal distribution of the classes: nodes: {self.dataset_infos.node_types} --"
-                  f" edges: {self.dataset_infos.edge_types}")
+            print(
+                f"Marginal distribution of the classes: nodes: {self.dataset_infos.node_types} -- "
+                f"edges: {self.dataset_infos.edge_types}"
+            )
             if cfg.model.schedule == "cosine":
                 self.noise_model = MarginalRateCosine(
                     cfg=cfg,
                     x_marginals=self.dataset_infos.node_types,
                     e_marginals=self.dataset_infos.edge_types,
-                    y_classes=self.output_dims.y
+                    y_classes=self.output_dims.y,
                 )
             elif cfg.model.schedule == "constant":
                 self.noise_model = MarginalRateConstant(
                     cfg=cfg,
                     x_marginals=self.dataset_infos.node_types,
                     e_marginals=self.dataset_infos.edge_types,
-                    y_classes=self.output_dims.y
+                    y_classes=self.output_dims.y,
                 )
                 assert False
         else:
@@ -100,6 +122,19 @@ class AbstractDiffusionModel(pl.LightningModule):
         self.corrector_entry_time = cfg.model.corrector_entry_time
         self.corrector_num_steps = cfg.model.corrector_num_steps
 
+        # Carbonyl scaffold settings.
+        # carbonyl_start_frac = 0.6 means enforce only when t_int <= 0.6 * T.
+        self.carbonyl_start_frac = getattr(cfg.model, "carbonyl_start_frac", 0.6)
+
+        # Soft constraint setting.
+        # 1.0 = hard/current behavior, 0.5 = apply only half the time, 0.25 = softer.
+        self.carbonyl_apply_prob = getattr(cfg.model, "carbonyl_apply_prob", 0.75)
+
+        print(">>> USING SOFT / PROBABILISTIC CARBONYL SCAFFOLD CONSTRAINT MODEL <<<")
+        print("Carbonyl scaffold: atom 0 = C, atom 1 = O, bond(0,1) = double")
+        print(f"carbonyl_start_frac = {self.carbonyl_start_frac}")
+        print(f"carbonyl_apply_prob = {self.carbonyl_apply_prob}")
+
     def on_train_epoch_start(self) -> None:
         self.print("Starting epoch", self.current_epoch)
         self.start_epoch_time = time.time()
@@ -109,10 +144,12 @@ class AbstractDiffusionModel(pl.LightningModule):
     def on_train_epoch_end(self) -> None:
         self.print(f"Train epoch {self.current_epoch} ends")
         tle_log = self.train_loss.log_epoch_metrics()
-        self.print(f"Epoch {self.current_epoch} finished: "
-                   f"X: {tle_log['train_epoch/X_loss'] :.2f} --"
-                   f" E: {tle_log['train_epoch/E_loss'] :.2f} --"
-                   f" {time.time() - self.start_epoch_time:.1f}s ")
+        self.print(
+            f"Epoch {self.current_epoch} finished: "
+            f"X: {tle_log['train_epoch/X_loss'] :.2f} --"
+            f" E: {tle_log['train_epoch/E_loss'] :.2f} --"
+            f" {time.time() - self.start_epoch_time:.1f}s "
+        )
 
         if wandb.run:
             wandb.log({"epoch": self.current_epoch}, commit=False)
@@ -129,26 +166,30 @@ class AbstractDiffusionModel(pl.LightningModule):
 
         if val_elbo < self.best_val_loss:
             self.best_val_loss = val_elbo
-        print('Val loss: %.4f \t Best val loss:  %.4f\n' % (val_elbo, self.best_val_loss))
+
+        print("Val loss: %.4f \t Best val loss:  %.4f\n" % (val_elbo, self.best_val_loss))
 
         self.val_counter += 1
-        if self.name == "debug" or (self.val_counter % self.cfg.general.sample_every_val == 0 and
-                                    self.current_epoch > 0):
+        if self.name == "debug" or (
+            self.val_counter % self.cfg.general.sample_every_val == 0
+            and self.current_epoch > 0
+        ):
             self.print("Sampling start")
             start = time.time()
             gen = self.cfg.general
             samples = self.sample_n_graphs(
                 samples_to_generate=math.ceil(gen.samples_to_generate / max(gen.gpus, 1)),
                 chains_to_save=gen.chains_to_save if self.local_rank == 0 else 0,
-                samples_to_save=gen.samples_to_save if self.local_rank == 0 else 0
+                samples_to_save=gen.samples_to_save if self.local_rank == 0 else 0,
             )
-            print(f'Done on {self.local_rank}. Sampling took {time.time() - start:.2f} seconds\n')
+            print(f"Done on {self.local_rank}. Sampling took {time.time() - start:.2f} seconds\n")
             print(f"Computing sampling metrics on {self.local_rank}...")
             self.val_sampling_metrics.compute_all_metrics(
                 samples,
                 current_epoch=self.current_epoch,
-                local_rank=self.local_rank
+                local_rank=self.local_rank,
             )
+
         self.print(f"Val epoch {self.current_epoch} ends")
 
     def on_test_epoch_start(self):
@@ -164,21 +205,25 @@ class AbstractDiffusionModel(pl.LightningModule):
         start = time.time()
         print(f"Samples to generate: {self.cfg.general.final_model_samples_to_generate}")
         print(f"Samples to save: {self.cfg.general.final_model_samples_to_save}")
+
         samples = self.sample_n_graphs(
             samples_to_generate=self.cfg.general.final_model_samples_to_generate,
             chains_to_save=self.cfg.general.final_model_chains_to_save,
-            samples_to_save=self.cfg.general.final_model_samples_to_save
+            samples_to_save=self.cfg.general.final_model_samples_to_save,
         )
+
         print("Saving the generated graphs")
-        filename = 'generated_samples1.txt'
+        filename = "generated_samples1.txt"
         for i in range(2, 10):
             if os.path.exists(filename):
-                filename = f'generated_samples{i}.txt'
+                filename = f"generated_samples{i}.txt"
             else:
                 break
-        with open(filename, 'w') as f:
+
+        with open(filename, "w") as f:
             for graph in samples:
                 f.write(f"N={len(graph[0])}\n")
+
                 nodes = graph[0]
                 f.write("X: \n")
                 for node in nodes:
@@ -191,10 +236,11 @@ class AbstractDiffusionModel(pl.LightningModule):
                         f.write(f"{edge} ")
                     f.write("\n")
                 f.write("\n")
+
         print("Saved.")
         print("Computing sampling metrics...")
         self.test_sampling_metrics.compute_all_metrics(samples, self.current_epoch, self.local_rank)
-        print(f'Done. Sampling took {time.time() - start:.2f} seconds\n')
+        print(f"Done. Sampling took {time.time() - start:.2f} seconds\n")
         print("Test ends.")
 
     def sample_n_graphs(self, samples_to_generate: int, chains_to_save: int, samples_to_save: int):
@@ -203,34 +249,119 @@ class AbstractDiffusionModel(pl.LightningModule):
         chains_left_to_save = chains_to_save
 
         samples = []
-
         ident = 0
+
         while samples_left_to_generate > 0:
             bs = 2 * self.cfg.train.batch_size
             to_generate = min(samples_left_to_generate, bs)
             to_save = min(samples_left_to_save, bs)
             chains_save = min(chains_left_to_save, bs)
-            samples.extend(self.sample_batch(
-                batch_id=ident,
-                batch_size=to_generate,
-                num_nodes=None,
-                save_final=to_save,
-                keep_chain=chains_save,
-                number_chain_steps=self.number_chain_steps
-            ))
-            ident += to_generate
 
+            samples.extend(
+                self.sample_batch(
+                    batch_id=ident,
+                    batch_size=to_generate,
+                    num_nodes=None,
+                    save_final=to_save,
+                    keep_chain=chains_save,
+                    number_chain_steps=self.number_chain_steps,
+                )
+            )
+
+            ident += to_generate
             samples_left_to_save -= to_save
             samples_left_to_generate -= to_generate
             chains_left_to_save -= chains_save
 
         return samples
 
+    def enforce_carbonyl_scaffold(self, z, current_step):
+        """
+        Soft/probabilistic carbonyl scaffold constraint.
+
+        QM9 atom decoder:
+            C = 0, N = 1, O = 2, F = 3
+
+        Bond types:
+            0 = no bond, 1 = single, 2 = double, 3 = triple, 4 = aromatic
+
+        This encourages/forces:
+            atom 0 = C
+            atom 1 = O
+            bond(0, 1) = double
+
+        It is applied:
+            1. only in later reverse steps, controlled by carbonyl_start_frac
+            2. only with probability carbonyl_apply_prob
+
+        carbonyl_apply_prob:
+            1.0  -> hard delayed constraint
+            0.5  -> softer constraint
+            0.25 -> even softer constraint
+        """
+
+        if z.X.size(1) < 2:
+            return z
+
+        threshold = int(self.T * self.carbonyl_start_frac)
+
+        # current_step is t_int. Large t_int = early/high noise.
+        # Only enforce when current_step <= threshold.
+        if current_step > threshold:
+            return z
+
+        # Soft/probabilistic application.
+        if torch.rand(1, device=z.X.device).item() > self.carbonyl_apply_prob:
+            return z
+
+        repaired = z.copy()
+
+        X = repaired.X.clone()
+        E = repaired.E.clone()
+
+        C_idx = 0
+        O_idx = 2
+        double_bond_idx = 2
+
+        # Force atom 0 to carbon.
+        X[:, 0, :] = 0.0
+        X[:, 0, C_idx] = 1.0
+
+        # Force atom 1 to oxygen.
+        X[:, 1, :] = 0.0
+        X[:, 1, O_idx] = 1.0
+
+        # Force bond 0--1 to double bond.
+        E[:, 0, 1, :] = 0.0
+        E[:, 1, 0, :] = 0.0
+        E[:, 0, 1, double_bond_idx] = 1.0
+        E[:, 1, 0, double_bond_idx] = 1.0
+
+        # Remove self-bonds for scaffold atoms.
+        E[:, 0, 0, :] = 0.0
+        E[:, 1, 1, :] = 0.0
+        E[:, 0, 0, 0] = 1.0
+        E[:, 1, 1, 0] = 1.0
+
+        repaired.X = X
+        repaired.E = E
+        repaired = repaired.mask(repaired.node_mask)
+
+        return repaired
+
     @torch.no_grad()
-    def sample_batch(self, batch_id: int, batch_size: int, keep_chain: int, number_chain_steps: int,
-                     save_final: int, num_nodes=None):
+    def sample_batch(
+        self,
+        batch_id: int,
+        batch_size: int,
+        keep_chain: int,
+        number_chain_steps: int,
+        save_final: int,
+        num_nodes=None,
+    ):
         assert keep_chain >= 0
         assert save_final >= 0
+
         if num_nodes is None:
             n_nodes = self.node_dist.sample_n(batch_size, self.device)
         elif type(num_nodes) == int:
@@ -243,6 +374,7 @@ class AbstractDiffusionModel(pl.LightningModule):
 
         batch_size = len(n_nodes)
         n_max = torch.max(n_nodes).detach()
+
         arange = torch.arange(n_max, device=self.device).unsqueeze(0).expand(batch_size, -1)
         node_mask = arange < n_nodes.unsqueeze(1)
 
@@ -255,7 +387,7 @@ class AbstractDiffusionModel(pl.LightningModule):
         chains = utils.PlaceHolder(
             X=torch.zeros((number_chain_steps, keep_chain, n_max), dtype=torch.long),
             E=torch.zeros((number_chain_steps, keep_chain, n_max, n_max)),
-            y=None
+            y=None,
         )
 
         z_t = z_T
@@ -263,13 +395,15 @@ class AbstractDiffusionModel(pl.LightningModule):
         for t_int in reversed(range(1, self.T + 1)):
             z_s = self.sample_zs_from_zt(z_t=z_t)
 
-            # strong schedule: apply in the last 20% of reverse steps
-            if t_int <= max(1, int(0.2 * self.T)):
-                z_s = self.project_to_valency_constraint(z_s)
+            # Soft/probabilistic delayed carbonyl scaffold enforcement.
+            z_s = self.enforce_carbonyl_scaffold(z_s, t_int)
 
             if z_t.t[0] <= (1.0 - self.min_time) * self.corrector_entry_time + self.min_time:
                 for _ in range(self.corrector_num_steps):
                     z_s = self.sample_zs_from_zt(z_t=z_s, corrector=True)
+
+                    # Soft/probabilistic enforcement after corrector step too.
+                    z_s = self.enforce_carbonyl_scaffold(z_s, t_int)
 
             if ((t_int - 1) * number_chain_steps) % self.T == 0:
                 write_index = number_chain_steps - 1 - ((t_int * number_chain_steps) // self.T)
@@ -280,6 +414,10 @@ class AbstractDiffusionModel(pl.LightningModule):
             z_t = z_s
 
         z_0 = self.sample_zs_from_zt(z_t, last_pass=True)
+
+        # Final enforcement is also probabilistic now because enforce_carbonyl_scaffold()
+        # contains carbonyl_apply_prob internally.
+        z_0 = self.enforce_carbonyl_scaffold(z_0, 0)
 
         sampled = z_0.collapse()
         X, E, y = sampled.X, sampled.E, sampled.y
@@ -303,114 +441,9 @@ class AbstractDiffusionModel(pl.LightningModule):
             z_t=z_t,
             preds=preds,
             last_pass=last_pass,
-            corrector=corrector
+            corrector=corrector,
         )
         return z_s
-
-    def project_to_valency_constraint(self, z_s):
-        discrete = z_s.collapse()
-
-        X = discrete.X.clone()
-        E = discrete.E.clone()
-        node_mask = z_s.node_mask
-
-        bs = X.size(0)
-
-        for b in range(bs):
-            valid_nodes = node_mask[b].bool()
-            nnodes = int(valid_nodes.sum().item())
-
-            atom_types = X[b, :nnodes].clone()
-            edge_types = E[b, :nnodes, :nnodes].clone()
-
-            if nnodes == 0:
-                continue
-
-            for _ in range(10):
-                mol = Molecule(
-                    atom_types=atom_types.long(),
-                    bond_types=edge_types.long(),
-                    atom_decoder=self.dataset_infos.atom_decoder
-                )
-
-                mol_stable, _, _ = check_stability(mol, self.dataset_infos)
-                if mol_stable:
-                    break
-
-                bond_vals = edge_types.clone().float()
-                bond_vals[bond_vals == 4] = 1.5
-                valencies = bond_vals.sum(dim=0)
-
-                offending_atoms = []
-                for idx, atom in enumerate(atom_types):
-                    atom_name = self.dataset_infos.atom_decoder[int(atom.item())]
-                    allowed = self.allowed_bonds[atom_name]
-
-                    if isinstance(allowed, int):
-                        max_allowed = allowed
-                    elif isinstance(allowed, dict):
-                        numeric_allowed = []
-                        for _, v in allowed.items():
-                            if isinstance(v, list):
-                                numeric_allowed.extend(v)
-                            else:
-                                numeric_allowed.append(v)
-                        max_allowed = max(numeric_allowed) if len(numeric_allowed) > 0 else 0
-                    elif isinstance(allowed, list):
-                        max_allowed = max(allowed)
-                    else:
-                        max_allowed = 0
-
-                    if valencies[idx].item() > max_allowed:
-                        offending_atoms.append(idx)
-
-                if len(offending_atoms) == 0:
-                    break
-
-                # fix the worst offending atom first
-                atom_idx = max(offending_atoms, key=lambda i: valencies[i].item())
-
-                row = edge_types[atom_idx].clone()
-                row[atom_idx] = 0
-
-                if row.max().item() <= 0:
-                    break
-
-                partner = int(torch.argmax(row).item())
-                current_bond = int(edge_types[atom_idx, partner].item())
-
-                # gradual bond-order reduction instead of immediate deletion
-                if current_bond == 4:
-                    # aromatic -> single (simple safe fallback in this discrete scheme)
-                    new_bond = 1
-                elif current_bond > 1:
-                    new_bond = current_bond - 1
-                else:
-                    new_bond = 0
-
-                edge_types[atom_idx, partner] = new_bond
-                edge_types[partner, atom_idx] = new_bond
-
-            E[b, :nnodes, :nnodes] = edge_types.long()
-
-        if torch.any(X < 0) or torch.any(X >= z_s.X.size(-1)):
-            print("Bad X values:", X.min().item(), X.max().item(), "num_classes=", z_s.X.size(-1))
-
-        if torch.any(E < 0) or torch.any(E >= z_s.E.size(-1)):
-            print("Bad E values:", E.min().item(), E.max().item(), "num_classes=", z_s.E.size(-1))
-
-        X = X.clamp(min=0, max=z_s.X.size(-1) - 1)
-        E = E.clamp(min=0, max=z_s.E.size(-1) - 1)
-
-        X_onehot = F.one_hot(X.long(), num_classes=z_s.X.size(-1)).float()
-        E_onehot = F.one_hot(E.long(), num_classes=z_s.E.size(-1)).float()
-
-        repaired = z_s.copy()
-        repaired.X = X_onehot
-        repaired.E = E_onehot
-        repaired = repaired.mask(node_mask)
-
-        return repaired
 
     @property
     def BS(self):
@@ -435,8 +468,12 @@ class AbstractDiffusionModel(pl.LightningModule):
         return utils.PlaceHolder(X=extra_X, E=extra_E, y=extra_y)
 
     def configure_optimizers(self):
-        return torch.optim.AdamW(self.parameters(), lr=self.cfg.train.lr, amsgrad=True,
-                                 weight_decay=self.cfg.train.weight_decay)
+        return torch.optim.AdamW(
+            self.parameters(),
+            lr=self.cfg.train.lr,
+            amsgrad=True,
+            weight_decay=self.cfg.train.weight_decay,
+        )
 
     def on_fit_start(self) -> None:
         self.train_iterations = len(self.trainer.datamodule.train_dataloader())
