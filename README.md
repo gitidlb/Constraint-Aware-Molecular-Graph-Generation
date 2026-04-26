@@ -24,6 +24,9 @@ graph-tool-base
 Make a checkpoints folder in the cometh folder, and download the QM9 checkpoint from the COMETH GitHub repository.
 
 ### Additional setup
+There are two ways.
+
+#### Method 1: Wandb
 - Create a Wandb account.
 Provide account to Sabrina to join constrainedGenAI team or create your own Wandb team.
 - Perform pip install of the following packages:
@@ -36,6 +39,16 @@ Example of .env:
 ```
 WANDB_USERNAME = {teamName}
 WANDB_API_KEY = {apiKey}
+```
+
+#### Method 2: No Wandb
+Go to the qm9_sampling.yaml file in cometh/configs/experiment, and then change
+```
+wandb: 'online'
+```
+to
+```
+wandb: 'disabled'
 ```
 
 ### Run sampling
