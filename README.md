@@ -55,136 +55,168 @@ which python
 python --version
 ```
 
-## Hard Constraint (Valency) – Projection-Based Methods
+# Structural Constraint Sampling (COMETH)
 
-### Overview
-We implement two **hard constraint methods** to enforce valency during diffusion sampling.  
-These methods modify intermediate graphs during the reverse process and are **inspired by projection-based constraint handling**.
+## Overview
 
-Both methods:
-- Detect atoms that violate valency constraints
-- Apply a repair step during sampling
-- Continue the reverse diffusion process
+We implement carbonyl-based structural constraints during diffusion sampling.
 
-
-
-## Method 1: Delete-Based Constraint
-
-### Description
-- Identifies atoms whose valency exceeds the allowed limit
-- Removes offending bonds completely
-- Applies repair during the final steps of reverse sampling
-
-This is a **simple and aggressive strategy** that enforces constraints by removing invalid connections.
-
-### How to Run
-
-Modify:
+The constraint enforces:
 
 ```
-cometh/src/diffusion_models.py
+atom 0 = C
+atom 1 = O
+bond(0,1) = double bond
 ```
 
-Change:
+---
+
+## Constraint Implementations
+
+We use two versions of the diffusion model:
+
+### 1. Hard Constraint
+```
+abstract_diffusion_model_carbonyl_hard.py
+```
+- Constraint applied at every selected step (always enforced)
+
+### 2. Probabilistic Constraint
+```
+abstract_diffusion_model_carbonyl_soft.py
+```
+- Constraint applied with a probability at each step
+
+---
+
+## How to Switch Constraint Mode
+
+Replace the default diffusion model with the desired constraint file:
+
+```bash
+cp abstract_diffusion_model_carbonyl_hard.py models/abstract_diffusion_model.py
+```
+
+or
+
+```bash
+cp abstract_diffusion_model_carbonyl_soft.py models/abstract_diffusion_model.py
+```
+
+---
+
+## Constraint Settings
+
+### Timing (when constraint is applied)
+
+In both files:
 
 ```python
-from models.abstract_diffusion_model import AbstractDiffusionModel
+self.carbonyl_start_frac = getattr(cfg.model, "carbonyl_start_frac", 0.6)
 ```
 
-to:
+Tested values:
+
+```
+0.9 → early
+0.6 → mid
+0.3 → late
+```
+
+---
+
+### Probability (only for probabilistic constraint)
 
 ```python
-from models.abstract_diffusion_model_delete import AbstractDiffusionModel
+self.carbonyl_apply_prob = getattr(cfg.model, "carbonyl_apply_prob", 0.5)
 ```
 
-Run:
+Tested values:
+
+```
+0.25, 0.5, 0.75
+```
+
+---
+
+## Run Sampling
+
+### Base command
 
 ```bash
 python main.py +experiment=qm9_sampling.yaml \
 encoding=rrwp \
-general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
-hydra.run.dir=/home/{computingID}/outputs_delete
+general.test_only="../checkpoints/qm9.ckpt" \
+hydra.run.dir="/path/to/output_folder" \
+general.final_model_samples_to_generate=2000
 ```
 
-### Adjusting When the Constraint is Applied
+- `hydra.run.dir` → output folder name  
+- `general.final_model_samples_to_generate` → number of samples to generate  
 
-The constraint is applied during the **last portion of the reverse diffusion steps**.
 
-In `abstract_diffusion_model_delete.py`, locate:
+---
 
-```python
-if t_int <= max(1, int(0.1 * self.T)):
-    z_s = self.project_to_valency_constraint(z_s)
+## Evaluation
+
+### Structural Evaluation
+
+File:
+```
+evaluate_structural_constraints.py
 ```
 
-- `0.1 * self.T` means the constraint is applied in the **last 10% of sampling steps**
-
-You can modify this value to control when the constraint is applied:
-
-| Value | Effect |
-|------|--------|
-| `0.05 * self.T` | very late (minimal interference) |
-| `0.1 * self.T`  | late (default) |
-| `0.2 * self.T`  | earlier |
-| `0.5 * self.T`  | much earlier (stronger constraint influence) |
-
-Example (apply in last 20%):
-
-```python
-if t_int <= max(1, int(0.2 * self.T)):
-```
-
-
-
-## Method 2: Gradual Constraint (Bond Adjustment)
-
-### Description
-- Detects valency violations
-- Reduces bond order step-by-step (e.g., double → single)
-- Only removes bonds if necessary
-- Applied during reverse sampling
-
-This is a **softer and more controlled approach** that attempts to preserve molecular structure.
-
-### How to Run
-
-Modify:
-
-```
-cometh/src/diffusion_models.py
-```
-
-Change:
-
-```python
-from models.abstract_diffusion_model import AbstractDiffusionModel
-```
-
-to:
-
-```python
-from models.abstract_diffusion_model_gradual import AbstractDiffusionModel
-```
+Reports:
+- RDKit validity
+- Connectivity
+- Atom count
+- Ring statistics
+- Carbonyl presence
+- Substructures
 
 Run:
 
 ```bash
-python main.py +experiment=qm9_sampling.yaml \
-encoding=rrwp \
-general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
-hydra.run.dir=/home/{computingID}/outputs_gradual
+python evaluate_structural_constraints.py \
+  --folder /path/to/generated_samples \
+  --max_molecules 2000
 ```
 
+---
 
+### Valency Evaluation
 
-## Important Notes
+File:
+```
+evaluate_valency_metrics.py
+```
 
-- Only **one constraint method can be used at a time**  
-  (controlled via the import in `diffusion_models.py`)
+Reports:
+- Valency validity
+- Violation rate
+- Violation magnitude
+- Per-atom violations
 
-- No changes to `main.py` or training are required
+Run:
 
-- Use separate output directories to avoid overwriting results:
-  - `outputs_delete`
-  - `outputs_gradual`
+```bash
+python evaluate_valency_metrics.py \
+  --folder /path/to/generated_samples \
+  --max_molecules 2000
+```
+
+---
+
+## Provided Samples
+
+We include generated outputs for:
+
+```
+baseline_2000
+carbonyl_t03_*
+carbonyl_t06_*
+carbonyl_t09_*
+```
+
+These can be directly evaluated using the commands above.
 
