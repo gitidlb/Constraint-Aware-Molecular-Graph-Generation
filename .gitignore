@@ -1,2 +1,8 @@
 .conda*
 *__pycache__*
+/data/
+!/src/data/
+cometh/checkpoints
+cometh/outputs
+cometh/outputs_test
+cometh/data/qm9/qm9_pyg/raw/gdb9.sdf
