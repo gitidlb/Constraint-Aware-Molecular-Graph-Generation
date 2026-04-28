@@ -273,18 +273,7 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 
 QED is a composite score between 0 and 1 that combines multiple molecular properties (molecular weight (MW), lipophilicity (logP), hydrogen bond donors/acceptors, etc.) into a single drug-likeness estimate. This is the simplest and most general reranking strategy, useful as a baseline for evaluating the overall quality of generated molecules without imposing size or structure constraints.
 
-## Method 2: Rank by proximity to a target Molecular Weight
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_mw_target.tsv --top_k 20 --score mw --mw_target 350
-```
-### Description
-- Computes the molecular weight of each generated molecule.
-- Scores each molecule by how close its MW is to the specified target (--mw_target).
-- Returns the top-K molecules nearest to the target MW.
-
-This method is useful when the desired molecule must fall within a specific size range for the mass of the molecule, such as matching a known scaffold or satisfying fragment-based design criteria. It does not consider drug-likeness, so MW is a suitable soft constraint.
-
-## Method 3: Rank by QED with Molecular Weight filter
+## Method 2: Rank by QED with Molecular Weight filter
 ```
 python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output qed_mwfiltered.tsv --top_k 20 --min_mw 200 --max_mw  500
 ```
@@ -294,16 +283,3 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 - Returns the top-K most drug-like molecules within the MW range.
 
 This method combines a hard MW boundary with soft QED ranking. It is useful when the target application has a firm size requirement but otherwise wants to maximise drug-likeness among the valid candidates.
-
-## Method 4: Rank by composite score based on QED and Molecular Weight proximity
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_composite.tsv --top_k 20 --score composite --mw_target 350 --min_mw 200 --max_mw  500
-```
-### Description
-- Computes both QED and MW proximity to a target for each molecule.
-- Combines them into a single score: 0.5 × QED + 0.5 × MW-proximity.
-- MW-proximity is clipped to [0, 1] so molecules far from the target do not produce negative scores.
-- Optionally applies a hard MW window before scoring (--min_mw, --max_mw).
-- Returns the top-K molecules with the highest composite score.
-
-This is the most balanced reranking strategy, rewarding molecules that are simultaneously drug-like and close to the desired size. It is recommended when neither QED nor MW alone is sufficient to characterise the target molecule, and a trade-off between the two properties is acceptable.
