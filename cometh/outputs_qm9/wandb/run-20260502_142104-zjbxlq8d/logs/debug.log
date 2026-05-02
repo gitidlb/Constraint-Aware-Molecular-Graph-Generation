@@ -1,0 +1,59 @@
+2026-05-02 14:21:04,771 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Current SDK version is 0.15.4
+2026-05-02 14:21:04,771 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Configure stats pid to 99703
+2026-05-02 14:21:04,771 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from /home/ryp8rx/.config/wandb/settings
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/settings
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_service_wait': '300'}
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2026-05-02 14:21:04,772 WARNING MainThread:99703 [wandb_setup.py:_flush():76] Could not save program above cwd: /sfs/gpfs/tardis/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/src/main.py
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '/sfs/gpfs/tardis/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/src/main.py'}
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_init.py:_log_setup():507] Logging user logs to /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_142104-zjbxlq8d/logs/debug.log
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_init.py:_log_setup():508] Logging internal logs to /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_142104-zjbxlq8d/logs/debug-internal.log
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_init.py:init():547] calling init triggers
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'general': {'name': 'qm9_no_h_marginal', 'wandb': 'online', 'gpus': 1, 'resume': None, 'test_only': '/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt', 'check_val_every_n_epochs': 5, 'sample_every_val': 4, 'samples_to_generate': 512, 'samples_to_save': 20, 'chains_to_save': 1, 'log_every_steps': 50, 'number_chain_steps': 50, 'final_model_samples_to_generate': 2000, 'final_model_samples_to_save': 30, 'final_model_chains_to_save': 20, 'cpus_per_gpu': 4, 'force_ray': False, 'evaluate_all_checkpoints': False, 'num_final_sampling': 5, 'final_seeds': [0, 1, 2, 3, 4]}, 'model': {'transition': 'marginal', 'schedule': 'cosine', 'model': 'graph_tf', 'diffusion_steps': 500, 'min_time': 0.01, 'n_layers': 9, 'rate_constant': [5.0, 5.0, 1.0], 'corrector_entry_time': 0.0, 'corrector_num_steps': 0, 'corrector_tau_multiplier': 0.1, 'hidden_mlp_dims': {'X': 256, 'E': 128, 'y': 128}, 'hidden_dims': {'dx': 256, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 128}, 'lambda_train': [1, 5], 'carbonyl_start_frac': None, 'carbonyl_apply_prob': None}, 'train': {'n_epochs': 500, 'batch_size': 512, 'lr': 0.0002, 'clip_grad': None, 'save_model': True, 'num_workers': 0, 'ema_decay': 0.999, 'weight_decay': 1e-12, 'optimizer': 'adamw', 'seed': 0}, 'dataset': {'name': 'qm9', 'datadir': 'data/qm9/qm9_pyg/', 'remove_h': True, 'random_subset': None, 'pin_memory': False, 'bucketloader': False}, 'encoding': {'extra_features': None, 'use_cycles': False, 'encoding': 'rwse', 'n_steps': [1, 2, 3, 4], 'dim_pe': 8, 'after_mlp': False, 'molecular_features': 'all'}}
+2026-05-02 14:21:04,772 INFO    MainThread:99703 [wandb_init.py:init():571] re-initializing run, found existing run on stack: a0wjhwrd
+2026-05-02 14:21:04,773 INFO    MainThread:99703 [wandb_run.py:_finish():1890] finishing run constrainedGenAI/CTDGG_qm9/a0wjhwrd
+2026-05-02 14:21:04,773 INFO    MainThread:99703 [wandb_run.py:_atexit_cleanup():2124] got exitcode: 0
+2026-05-02 14:21:04,773 INFO    MainThread:99703 [wandb_run.py:_restore():2107] restore
+2026-05-02 14:21:04,773 INFO    MainThread:99703 [wandb_run.py:_restore():2113] restore done
+2026-05-02 14:21:09,309 INFO    MainThread:99703 [wandb_run.py:_footer_history_summary_info():3467] rendering history
+2026-05-02 14:21:09,309 INFO    MainThread:99703 [wandb_run.py:_footer_history_summary_info():3499] rendering summary
+2026-05-02 14:21:09,312 INFO    MainThread:99703 [wandb_run.py:_footer_sync_info():3426] logging synced files
+2026-05-02 14:21:09,320 INFO    MainThread:99703 [wandb_init.py:init():596] starting backend
+2026-05-02 14:21:09,321 INFO    MainThread:99703 [wandb_init.py:init():600] setting up manager
+2026-05-02 14:21:09,324 INFO    MainThread:99703 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2026-05-02 14:21:09,327 INFO    MainThread:99703 [wandb_init.py:init():606] backend started and connected
+2026-05-02 14:21:09,333 INFO    MainThread:99703 [wandb_init.py:init():703] updated telemetry
+2026-05-02 14:21:09,333 INFO    MainThread:99703 [wandb_init.py:init():736] communicating run to backend with 60.0 second timeout
+2026-05-02 14:21:10,600 INFO    MainThread:99703 [wandb_run.py:_on_init():2176] communicating current version
+2026-05-02 14:21:10,635 INFO    MainThread:99703 [wandb_run.py:_on_init():2185] got version response upgrade_message: "wandb version 0.26.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2026-05-02 14:21:10,635 INFO    MainThread:99703 [wandb_init.py:init():787] starting run threads in backend
+2026-05-02 14:21:16,402 INFO    MainThread:99703 [wandb_run.py:_console_start():2155] atexit reg
+2026-05-02 14:21:16,402 INFO    MainThread:99703 [wandb_run.py:_redirect():2010] redirect: SettingsConsole.WRAP_RAW
+2026-05-02 14:21:16,402 INFO    MainThread:99703 [wandb_run.py:_redirect():2075] Wrapping output streams.
+2026-05-02 14:21:16,402 INFO    MainThread:99703 [wandb_run.py:_redirect():2100] Redirects installed.
+2026-05-02 14:21:16,403 INFO    MainThread:99703 [wandb_init.py:init():828] run started, returning control to user process
+2026-05-02 14:23:02,089 INFO    MainThread:99703 [wandb_run.py:_config_callback():1283] config_cb ('_wandb', 'visualize', 'node distribution') {'panel_type': 'Vega2', 'panel_config': {'panelDefId': 'wandb/histogram/v0', 'fieldSettings': {'value': 'types'}, 'stringSettings': {'title': 'node distribution'}, 'transform': {'name': 'tableWithLeafColNames'}, 'userQuery': {'queryFields': [{'name': 'runSets', 'args': [{'name': 'runSets', 'value': '${runSets}'}], 'fields': [{'name': 'id', 'fields': []}, {'name': 'name', 'fields': []}, {'name': '_defaultColorIndex', 'fields': []}, {'name': 'summaryTable', 'args': [{'name': 'tableKey', 'value': 'node distribution_table'}], 'fields': []}]}]}}} None
+2026-05-02 14:23:02,756 INFO    MainThread:99703 [wandb_run.py:_config_callback():1283] config_cb ('_wandb', 'visualize', 'edge distribution') {'panel_type': 'Vega2', 'panel_config': {'panelDefId': 'wandb/histogram/v0', 'fieldSettings': {'value': 'types'}, 'stringSettings': {'title': 'edge distribution'}, 'transform': {'name': 'tableWithLeafColNames'}, 'userQuery': {'queryFields': [{'name': 'runSets', 'args': [{'name': 'runSets', 'value': '${runSets}'}], 'fields': [{'name': 'id', 'fields': []}, {'name': 'name', 'fields': []}, {'name': '_defaultColorIndex', 'fields': []}, {'name': 'summaryTable', 'args': [{'name': 'tableKey', 'value': 'edge distribution_table'}], 'fields': []}]}]}}} None
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Current SDK version is 0.15.4
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Configure stats pid to 99703
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from /home/ryp8rx/.config/wandb/settings
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/settings
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_service_wait': '300'}
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2026-05-02 14:23:04,396 WARNING MainThread:99703 [wandb_setup.py:_flush():76] Could not save program above cwd: /sfs/gpfs/tardis/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/src/main.py
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '/sfs/gpfs/tardis/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/src/main.py'}
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_init.py:_log_setup():507] Logging user logs to /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_142304-k0v2z0h4/logs/debug.log
+2026-05-02 14:23:04,396 INFO    MainThread:99703 [wandb_init.py:_log_setup():508] Logging internal logs to /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_142304-k0v2z0h4/logs/debug-internal.log
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_init.py:init():547] calling init triggers
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'general': {'name': 'qm9_no_h_marginal', 'wandb': 'online', 'gpus': 1, 'resume': None, 'test_only': '/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt', 'check_val_every_n_epochs': 5, 'sample_every_val': 4, 'samples_to_generate': 512, 'samples_to_save': 20, 'chains_to_save': 1, 'log_every_steps': 50, 'number_chain_steps': 50, 'final_model_samples_to_generate': 2000, 'final_model_samples_to_save': 30, 'final_model_chains_to_save': 20, 'cpus_per_gpu': 4, 'force_ray': False, 'evaluate_all_checkpoints': False, 'num_final_sampling': 5, 'final_seeds': [0, 1, 2, 3, 4]}, 'model': {'transition': 'marginal', 'schedule': 'cosine', 'model': 'graph_tf', 'diffusion_steps': 500, 'min_time': 0.01, 'n_layers': 9, 'rate_constant': [5.0, 5.0, 1.0], 'corrector_entry_time': 0.0, 'corrector_num_steps': 0, 'corrector_tau_multiplier': 0.1, 'hidden_mlp_dims': {'X': 256, 'E': 128, 'y': 128}, 'hidden_dims': {'dx': 256, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 128}, 'lambda_train': [1, 5], 'carbonyl_start_frac': None, 'carbonyl_apply_prob': None}, 'train': {'n_epochs': 500, 'batch_size': 512, 'lr': 0.0002, 'clip_grad': None, 'save_model': True, 'num_workers': 0, 'ema_decay': 0.999, 'weight_decay': 1e-12, 'optimizer': 'adamw', 'seed': 0}, 'dataset': {'name': 'qm9', 'datadir': 'data/qm9/qm9_pyg/', 'remove_h': True, 'random_subset': None, 'pin_memory': False, 'bucketloader': False}, 'encoding': {'extra_features': None, 'use_cycles': False, 'encoding': 'rwse', 'n_steps': [1, 2, 3, 4], 'dim_pe': 8, 'after_mlp': False, 'molecular_features': 'all'}}
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_init.py:init():571] re-initializing run, found existing run on stack: zjbxlq8d
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_run.py:_finish():1890] finishing run constrainedGenAI/CTDGG_qm9/zjbxlq8d
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_run.py:_atexit_cleanup():2124] got exitcode: 0
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_run.py:_restore():2107] restore
+2026-05-02 14:23:04,397 INFO    MainThread:99703 [wandb_run.py:_restore():2113] restore done
+2026-05-02 14:23:08,597 INFO    MainThread:99703 [wandb_run.py:_footer_history_summary_info():3467] rendering history
+2026-05-02 14:23:08,597 INFO    MainThread:99703 [wandb_run.py:_footer_history_summary_info():3499] rendering summary
+2026-05-02 14:23:08,600 INFO    MainThread:99703 [wandb_run.py:_footer_sync_info():3426] logging synced files

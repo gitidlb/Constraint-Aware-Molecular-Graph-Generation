@@ -10,6 +10,7 @@ from rdkit import RDLogger
 RDLogger.DisableLog("rdApp.*")
 
 ATOM_DECODER_QM9 = ["C", "N", "O", "F"]
+ATOM_DECODER_MOSES = ["C", "N", "O", "F", "S", "Cl", "Br"]
 
 
 SMARTS_PATTERNS = {
@@ -64,7 +65,46 @@ def parse_generated_samples_file(path):
 
 
 def find_sample_files(folder):
-    return sorted(glob.glob(os.path.join(folder, "**", "generated_samples*.txt"), recursive=True))
+    files = sorted(glob.glob(os.path.join(folder, "**", "generated_samples*.txt"), recursive=True))
+    
+    resolved = []
+    broken_symlinks = []
+    
+    for f in files:
+        if os.path.exists(f):
+            resolved.append(f)
+        elif os.path.islink(f):
+            broken_symlinks.append(f)
+    
+    if resolved:
+        return resolved
+    
+    # Fallback: try to resolve broken symlinks by finding real run folders
+    if broken_symlinks:
+        print(f"Warning: Found {len(broken_symlinks)} broken symlink(s), attempting to resolve via run folders...")
+        
+        wandb_dir = os.path.join(folder, "wandb")
+        if not os.path.isdir(wandb_dir):
+            # walk up to find wandb dir
+            wandb_dir = None
+            for root, dirs, _ in os.walk(folder):
+                if "wandb" in dirs:
+                    wandb_dir = os.path.join(root, "wandb")
+                    break
+        
+        if wandb_dir:
+            run_folders = sorted(glob.glob(os.path.join(wandb_dir, "run-*")))
+            for run_folder in run_folders:
+                candidate_files = sorted(glob.glob(os.path.join(run_folder, "**", "generated_samples*.txt"), recursive=True))
+                real_files = [f for f in candidate_files if os.path.exists(f)]
+                if real_files:
+                    print(f"Resolved to run folder: {run_folder}")
+                    return real_files
+    
+    raise FileNotFoundError(
+        f"No valid generated_samples*.txt found in {folder}. "
+        f"Found {len(broken_symlinks)} broken symlink(s) and could not resolve to a real run folder."
+    )
 
 
 def build_rdkit_mol(atom_types, edge_types, atom_decoder):
@@ -167,7 +207,10 @@ def analyze(folder, max_molecules=None):
             approx_rings = graph_ring_count(edge_types)
             ring_count_hist[approx_rings] += 1
 
-            mol, err = build_rdkit_mol(atom_types, edge_types, ATOM_DECODER_QM9)
+            if "qm9" in folder:
+                mol, err = build_rdkit_mol(atom_types, edge_types, ATOM_DECODER_QM9)
+            elif "moses" in folder:
+                mol, err = build_rdkit_mol(atom_types, edge_types, ATOM_DECODER_MOSES)
 
             if mol is None:
                 rdkit_errors += 1

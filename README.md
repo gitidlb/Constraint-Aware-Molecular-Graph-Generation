@@ -21,9 +21,12 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9 checkpoint from the COMETH GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9 and MOSES checkpoints (i.e., "qm9.ckpt" and "moses.ckpt") from the COMETH GitHub repository.
 
 ### Additional setup
+There are two ways.
+
+#### Method 1: Wandb
 - Create a Wandb account.
 Provide account to Sabrina to join constrainedGenAI team or create your own Wandb team.
 - Perform pip install of the following packages:
@@ -38,12 +41,25 @@ WANDB_USERNAME = {teamName}
 WANDB_API_KEY = {apiKey}
 ```
 
+#### Method 2: No Wandb
+Go to the qm9_sampling.yaml file in cometh/configs/experiment, and then change
+```
+wandb: 'online'
+```
+to
+```
+wandb: 'disabled'
+```
+
 ### Run sampling
 Example to run sampling:
+```bash
+python main.py +experiment=qm9_sampling.yaml \
+encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
+hydra.run.dir=/home/{computingID}/outputs \
+general.final_model_samples_to_generate=2000
 ```
-python main.py +experiment=qm9_sampling.yaml encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt hydra.run.dir=/home/{computingID}/outputs
-```
-Sampling can be performed on any of the three dataset, but the MOSES and GuacaMol datasets need the following argument replacement for the sampling compared to QM9:
+Sampling can be performed on any of the three dataset, but the MOSES dataset need the following argument replacement for the sampling compared to QM9:
 ```
 encoding=rrwp_moses
 ```
@@ -90,20 +106,6 @@ abstract_diffusion_model_carbonyl_soft.py
 ```
 - Constraint applied with a probability at each step
 
-## How to Switch Constraint Mode
-
-Replace the default diffusion model with the desired constraint file:
-
-```bash
-cp abstract_diffusion_model_carbonyl_hard.py models/abstract_diffusion_model.py
-```
-
-or
-
-```bash
-cp abstract_diffusion_model_carbonyl_soft.py models/abstract_diffusion_model.py
-```
-
 ## Constraint Settings
 
 ### Timing (when constraint is applied)
@@ -149,6 +151,16 @@ general.final_model_samples_to_generate=2000
 - `hydra.run.dir` → output folder name  
 - `general.final_model_samples_to_generate` → number of samples to generate  
 
+## Constraint commands
+The idea is to either run the timing constraint or the timing and probability constraint. For only the timing constraint, only include the "model.carbonyl_start_frac" argument. For the timing and probability constraint, include the "model.carbonyl_start_frac" and "model.carbonyl_apply_prob" arguments. The following is an example:
+
+```bash
+python main.py +experiment=qm9_sampling.yaml \
+encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
+hydra.run.dir=/home/{computingID}/outputs \
+general.final_model_samples_to_generate=2000 \
+model.carbonyl_start_frac=0.3 model.carbonyl_apply_prob=0.25
+```
 
 ## Evaluation
 
@@ -160,11 +172,11 @@ evaluate_structural_constraints.py
 ```
 
 Reports:
-- RDKit validity
-- Connectivity
+- RDKit validity (i.e, "rdkit_valid_rate" for RDKit validity rate in results)
+- Connectivity (i.e., "components=1" for connectivity rate in results)
 - Atom count
 - Ring statistics
-- Carbonyl presence
+- Carbonyl presence (i.e., "carbonyl_C_eq_O" for carbonyl presence rate in results)
 - Substructures
 
 Run:
@@ -183,7 +195,7 @@ evaluate_valency_metrics.py
 ```
 
 Reports:
-- Valency validity
+- Valency validity (i.e., "molecules_fully_valency_valid_rate" for valency validity rate in results)
 - Violation rate
 - Violation magnitude
 - Per-atom violations
@@ -194,6 +206,23 @@ Run:
 python evaluate_valency_metrics.py \
   --folder /path/to/generated_samples \
   --max_molecules 2000
+```
+
+### Diversity and Uniqueness
+
+File:
+```
+diversity_uniqueness.py
+```
+
+Reports:
+- Uniqueness rate (i.e., "Uniqueness" for uniqueness in results)
+- Diversity rate (i.e., "Fingerprint diversity" for diversity in results)
+
+Run:
+
+```bash
+
 ```
 
 ## Soft Constraints - Reranking Molecules
@@ -216,18 +245,7 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 
 QED is a composite score between 0 and 1 that combines multiple molecular properties (molecular weight (MW), lipophilicity (logP), hydrogen bond donors/acceptors, etc.) into a single drug-likeness estimate. This is the simplest and most general reranking strategy, useful as a baseline for evaluating the overall quality of generated molecules without imposing size or structure constraints.
 
-## Method 2: Rank by proximity to a target Molecular Weight
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_mw_target.tsv --top_k 20 --score mw --mw_target 350
-```
-### Description
-- Computes the molecular weight of each generated molecule.
-- Scores each molecule by how close its MW is to the specified target (--mw_target).
-- Returns the top-K molecules nearest to the target MW.
-
-This method is useful when the desired molecule must fall within a specific size range for the mass of the molecule, such as matching a known scaffold or satisfying fragment-based design criteria. It does not consider drug-likeness, so MW is a suitable soft constraint.
-
-## Method 3: Rank by QED with Molecular Weight filter
+## Method 2: Rank by QED with Molecular Weight filter
 ```
 python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output qed_mwfiltered.tsv --top_k 20 --min_mw 200 --max_mw  500
 ```
@@ -237,16 +255,3 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 - Returns the top-K most drug-like molecules within the MW range.
 
 This method combines a hard MW boundary with soft QED ranking. It is useful when the target application has a firm size requirement but otherwise wants to maximise drug-likeness among the valid candidates.
-
-## Method 4: Rank by composite score based on QED and Molecular Weight proximity
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_composite.tsv --top_k 20 --score composite --mw_target 350 --min_mw 200 --max_mw  500
-```
-### Description
-- Computes both QED and MW proximity to a target for each molecule.
-- Combines them into a single score: 0.5 × QED + 0.5 × MW-proximity.
-- MW-proximity is clipped to [0, 1] so molecules far from the target do not produce negative scores.
-- Optionally applies a hard MW window before scoring (--min_mw, --max_mw).
-- Returns the top-K molecules with the highest composite score.
-
-This is the most balanced reranking strategy, rewarding molecules that are simultaneously drug-like and close to the desired size. It is recommended when neither QED nor MW alone is sufficient to characterise the target molecule, and a trade-off between the two properties is acceptable.

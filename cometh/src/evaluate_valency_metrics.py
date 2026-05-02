@@ -13,6 +13,7 @@ from metrics.molecular_metrics import allowed_bonds
 RDLogger.DisableLog("rdApp.*")
 
 ATOM_DECODER_QM9 = ['C', 'N', 'O', 'F']
+ATOM_DECODER_MOSES = ['C', 'N', 'O', 'F', 'S', 'Cl', 'Br']
 
 
 def parse_generated_samples_file(path: str):
@@ -65,9 +66,47 @@ def parse_generated_samples_file(path: str):
     return molecules
 
 
-def find_sample_files(folder: str):
+def find_sample_files(folder):
     pattern = os.path.join(folder, "**", "generated_samples*.txt")
-    return sorted(glob.glob(pattern, recursive=True))
+    files = sorted(glob.glob(pattern, recursive=True))
+
+    resolved = []
+    broken_symlinks = []
+
+    for f in files:
+        if os.path.exists(f):
+            resolved.append(f)
+        elif os.path.islink(f):
+            broken_symlinks.append(f)
+
+    if resolved:
+        return resolved
+
+    # Fallback: try to resolve broken symlinks via run folders
+    if broken_symlinks:
+        print(f"Warning: Found {len(broken_symlinks)} broken symlink(s), attempting to resolve via run folders...")
+
+        wandb_dir = os.path.join(folder, "wandb")
+        if not os.path.isdir(wandb_dir):
+            wandb_dir = None
+            for root, dirs, _ in os.walk(folder):
+                if "wandb" in dirs:
+                    wandb_dir = os.path.join(root, "wandb")
+                    break
+
+        if wandb_dir:
+            run_folders = sorted(glob.glob(os.path.join(wandb_dir, "run-*")), reverse=True)
+            for run_folder in run_folders:
+                candidate_files = sorted(glob.glob(os.path.join(run_folder, "**", "generated_samples*.txt"), recursive=True))
+                real_files = [f for f in candidate_files if os.path.exists(f)]
+                if real_files:
+                    print(f"Resolved to run folder: {run_folder}")
+                    return real_files
+
+    raise FileNotFoundError(
+        f"No valid generated_samples*.txt found in {folder}. "
+        f"Found {len(broken_symlinks)} broken symlink(s) and could not resolve to a real run folder."
+    )
 
 
 def max_allowed_valency(atom_name: str) -> int:
@@ -253,12 +292,15 @@ def print_results(res):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--folder", required=True, help="Path to generated folder")
-    parser.add_argument("--dataset", default="qm9", choices=["qm9"])
+    parser.add_argument("--dataset", default="qm9", choices=["qm9", "moses"])
     parser.add_argument("--max_molecules", type=int, default=None,
                         help="Maximum number of molecules to analyze")
     args = parser.parse_args()
-
-    atom_decoder = ATOM_DECODER_QM9
+    
+    if "qm9" in args.folder:
+        atom_decoder = ATOM_DECODER_QM9
+    elif "moses" in args.folder:
+        atom_decoder = ATOM_DECODER_MOSES
     res = analyze_folder(args.folder, atom_decoder, max_molecules=args.max_molecules)
     print_results(res)
 
