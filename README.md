@@ -24,6 +24,9 @@ graph-tool-base
 Make a checkpoints folder in the cometh folder, and download the QM9, MOSES, and GuacaMol checkpoints from the Cometh GitHub repository.
 
 ### Additional setup
+There are two ways.
+
+#### Method 1: Wandb
 - Create a Wandb account.
 Provide account to Sabrina to join constrainedGenAI team or create your own Wandb team.
 - Perform pip install of the following packages:
@@ -36,6 +39,16 @@ Example of .env:
 ```
 WANDB_USERNAME = {teamName}
 WANDB_API_KEY = {apiKey}
+```
+
+#### Method 2: No Wandb
+Go to the qm9_sampling.yaml file in cometh/configs/experiment, and then change
+```
+wandb: 'online'
+```
+to
+```
+wandb: 'disabled'
 ```
 
 ### Run sampling
@@ -151,6 +164,50 @@ general.final_model_samples_to_generate=2000
 - `hydra.run.dir` → output folder name  
 - `general.final_model_samples_to_generate` → number of samples to generate  
 
+---
+
+## Post-hoc Filtering
+
+We also apply a post-hoc filtering step to retain only high-quality molecules.
+
+This filtering keeps molecules that are:
+- RDKit valid  
+- Connected  
+- Contain a carbonyl group (C=O)  
+
+File used:
+```
+posthoc_filter_carbonyl.py
+```
+
+### Run filtering
+
+```bash
+python posthoc_filter_carbonyl.py \
+  --input_folder /path/to/generated_samples \
+  --output_folder /path/to/output_filtered \
+  --max_molecules 2000
+```
+
+### Output
+
+The script saves:
+
+```
+filtered_valid_carbonyl_samples.txt
+```
+
+Rename it for evaluation:
+
+```bash
+mv filtered_valid_carbonyl_samples.txt generated_samples1.txt
+```
+
+### Note
+
+The filtering script uses a simple C=O detector, while the evaluation uses a stricter SMARTS-based definition.  
+Therefore, the final carbonyl percentage may be slightly below 100%.
+
 
 ## Evaluation
 
@@ -218,18 +275,7 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 
 QED is a composite score between 0 and 1 that combines multiple molecular properties (molecular weight (MW), lipophilicity (logP), hydrogen bond donors/acceptors, etc.) into a single drug-likeness estimate. This is the simplest and most general reranking strategy, useful as a baseline for evaluating the overall quality of generated molecules without imposing size or structure constraints.
 
-## Method 2: Rank by proximity to a target Molecular Weight
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_mw_target.tsv --top_k 20 --score mw --mw_target 350
-```
-### Description
-- Computes the molecular weight of each generated molecule.
-- Scores each molecule by how close its MW is to the specified target (--mw_target).
-- Returns the top-K molecules nearest to the target MW.
-
-This method is useful when the desired molecule must fall within a specific size range for the mass of the molecule, such as matching a known scaffold or satisfying fragment-based design criteria. It does not consider drug-likeness, so MW is a suitable soft constraint.
-
-## Method 3: Rank by QED with Molecular Weight filter
+## Method 2: Rank by QED with Molecular Weight filter
 ```
 python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output qed_mwfiltered.tsv --top_k 20 --min_mw 200 --max_mw  500
 ```
@@ -239,16 +285,3 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 - Returns the top-K most drug-like molecules within the MW range.
 
 This method combines a hard MW boundary with soft QED ranking. It is useful when the target application has a firm size requirement but otherwise wants to maximise drug-likeness among the valid candidates.
-
-## Method 4: Rank by composite score based on QED and Molecular Weight proximity
-```
-python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_composite.tsv --top_k 20 --score composite --mw_target 350 --min_mw 200 --max_mw  500
-```
-### Description
-- Computes both QED and MW proximity to a target for each molecule.
-- Combines them into a single score: 0.5 × QED + 0.5 × MW-proximity.
-- MW-proximity is clipped to [0, 1] so molecules far from the target do not produce negative scores.
-- Optionally applies a hard MW window before scoring (--min_mw, --max_mw).
-- Returns the top-K molecules with the highest composite score.
-
-This is the most balanced reranking strategy, rewarding molecules that are simultaneously drug-like and close to the desired size. It is recommended when neither QED nor MW alone is sufficient to characterise the target molecule, and a trade-off between the two properties is acceptable.
