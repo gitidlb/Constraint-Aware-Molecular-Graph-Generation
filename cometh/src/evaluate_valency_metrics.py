@@ -293,7 +293,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--folder", required=True, help="Path to generated folder")
     parser.add_argument("--dataset", default="qm9", choices=["qm9", "moses"])
-    parser.add_argument("--max_molecules", type=int, default=None,
+    parser.add_argument("--max_molecules", type=int, default=2000,
                         help="Maximum number of molecules to analyze")
     args = parser.parse_args()
     

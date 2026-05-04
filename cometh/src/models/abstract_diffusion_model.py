@@ -94,11 +94,11 @@ class AbstractDiffusionModel(pl.LightningModule):
 
         # Carbonyl scaffold settings.
         # carbonyl_start_frac = 0.6 means enforce only when t_int <= 0.6 * T.
-        self.carbonyl_start_frac = cfg.model.carbonyl_start_frac if cfg.model.carbonyl_start_frac is not None else 0.0
+        self.carbonyl_start_frac = cfg.model.carbonyl_start_frac
 
         # Soft constraint setting.
         # 1.0 = hard/current behavior, 0.5 = apply only half the time, 0.25 = softer.
-        self.carbonyl_apply_prob = cfg.model.carbonyl_apply_prob if cfg.model.carbonyl_apply_prob is not None else 1.0
+        self.carbonyl_apply_prob = cfg.model.carbonyl_apply_prob
         
         print(f"carbonyl_start_frac={self.carbonyl_start_frac}, carbonyl_apply_prob={self.carbonyl_apply_prob}")
 
@@ -250,7 +250,7 @@ class AbstractDiffusionModel(pl.LightningModule):
             return z
 
         # Soft/probabilistic application.
-        if torch.rand(1, device=z.X.device).item() > self.carbonyl_apply_prob:
+        if self.carbonyl_apply_prob is not None and torch.rand(1, device=z.X.device).item() > self.carbonyl_apply_prob:
             return z
 
         repaired = z.copy()
@@ -301,7 +301,7 @@ class AbstractDiffusionModel(pl.LightningModule):
         :return: graph_list. Each element of this list is a tuple (atom_types, charges, positions)
         """
 
-        use_scaffold = self.carbonyl_start_frac or self.carbonyl_apply_prob
+        use_scaffold = self.carbonyl_start_frac is not None
 
         # print(f"Sampling a batch with {len(n_nodes)} graphs. Saving {save_final} visualization and {keep_chain} full chains.")
         assert keep_chain >= 0

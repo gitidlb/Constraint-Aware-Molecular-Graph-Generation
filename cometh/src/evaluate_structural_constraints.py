@@ -272,7 +272,7 @@ def analyze(folder, max_molecules=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--folder", required=True)
-    parser.add_argument("--max_molecules", type=int, default=None)
+    parser.add_argument("--max_molecules", type=int, default=2000)
     args = parser.parse_args()
 
     analyze(args.folder, args.max_molecules)
