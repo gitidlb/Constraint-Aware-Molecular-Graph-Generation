@@ -21,7 +21,7 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9, MOSES, and GuacaMol checkpoints from the Cometh GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9 and MOSES checkpoints (i.e., "qm9.ckpt" and "moses.ckpt") from the COMETH GitHub repository.
 
 ### Additional setup
 There are two ways.
@@ -51,14 +51,19 @@ to
 wandb: 'disabled'
 ```
 
-### Run sampling
+### Run baseline sampling
 Example to run sampling:
+```bash
+python main.py +experiment=qm9_sampling.yaml \
+  encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
+  hydra.run.dir=/home/{computingID}/outputs \
+  general.final_model_samples_to_generate=2000
 ```
-python main.py +experiment=qm9_sampling.yaml encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt hydra.run.dir=/home/{computingID}/outputs
+Sampling can be performed on any of the datasets, but the MOSES dataset needs the following argument replacements for the sampling compared to QM9:
 ```
-Sampling can be performed on any of the three dataset, but the MOSES and GuacaMol datasets need the following argument replacement for the sampling compared to QM9:
-```
++experiment=moses_sampling.yaml
 encoding=rrwp_moses
+general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/moses.ckpt
 ```
 
 ### Additional Notes
@@ -74,6 +79,8 @@ python --version
 ```
 
 2. The sampling was ran with NVIDIA A6000. If you want any additional details for running results, you can refer to the slurm files in the slurm files folder. Modifying the file path that was used in the change directory (cd) command may be needed.
+
+3. If you want separate output folders for the results so the different datasets and their constraint combinations do not overwrite each other, some examples are in the slurm files in the slurm files folder.
 
 # Structural Constraint Sampling (COMETH)
 
@@ -94,30 +101,12 @@ bond(0,1) = double bond
 We use two versions of the diffusion model:
 
 ### 1. Hard Constraint
-```
-abstract_diffusion_model_carbonyl_hard.py
-```
+
 - Constraint applied at every selected step (always enforced)
 
 ### 2. Probabilistic Constraint
-```
-abstract_diffusion_model_carbonyl_soft.py
-```
+
 - Constraint applied with a probability at each step
-
-## How to Switch Constraint Mode
-
-Replace the default diffusion model with the desired constraint file:
-
-```bash
-cp abstract_diffusion_model_carbonyl_hard.py models/abstract_diffusion_model.py
-```
-
-or
-
-```bash
-cp abstract_diffusion_model_carbonyl_soft.py models/abstract_diffusion_model.py
-```
 
 ## Constraint Settings
 
@@ -151,20 +140,30 @@ We tested the following values:
 
 ## Run Sampling
 
-### Base command
+### Base command (i.e., the same as running sampling for baseline)
 
 ```bash
 python main.py +experiment=qm9_sampling.yaml \
-encoding=rrwp \
-general.test_only="../checkpoints/qm9.ckpt" \
-hydra.run.dir="/path/to/output_folder" \
-general.final_model_samples_to_generate=2000
+  encoding=rrwp \
+  general.test_only="../checkpoints/qm9.ckpt" \
+  hydra.run.dir="/path/to/output_folder" \
+  general.final_model_samples_to_generate=2000
 ```
 
 - `hydra.run.dir` → output folder name  
 - `general.final_model_samples_to_generate` → number of samples to generate  
 
----
+### Constraint commands
+The idea is to either run the timing constraint or the timing and probability constraint. For only the timing constraint, only include the "model.carbonyl_start_frac" argument. For the timing and probability constraint, include the "model.carbonyl_start_frac" and "model.carbonyl_apply_prob" arguments. The following is an example:
+
+```bash
+python main.py +experiment=qm9_sampling.yaml \
+  encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
+  hydra.run.dir=/home/{computingID}/outputs \
+  general.final_model_samples_to_generate=2000 \
+  model.carbonyl_start_frac=0.3 \
+  model.carbonyl_apply_prob=0.25
+```
 
 ## Post-hoc Filtering
 
@@ -219,11 +218,11 @@ evaluate_structural_constraints.py
 ```
 
 Reports:
-- RDKit validity
-- Connectivity
+- RDKit validity (i.e, "rdkit_valid_rate" for RDKit validity rate in results)
+- Connectivity (i.e., "components=1" for connectivity rate in results)
 - Atom count
 - Ring statistics
-- Carbonyl presence
+- Carbonyl presence (i.e., "carbonyl_C_eq_O" for carbonyl presence rate in results)
 - Substructures
 
 Run:
@@ -242,7 +241,7 @@ evaluate_valency_metrics.py
 ```
 
 Reports:
-- Valency validity
+- Valency validity (i.e., "molecules_fully_valency_valid_rate" for valency validity rate in results)
 - Violation rate
 - Violation magnitude
 - Per-atom violations
@@ -253,6 +252,24 @@ Run:
 python evaluate_valency_metrics.py \
   --folder /path/to/generated_samples \
   --max_molecules 2000
+```
+
+### Diversity and Uniqueness
+
+File:
+```
+diversity_uniqueness.py
+```
+
+Reports:
+- Uniqueness rate (i.e., "Uniqueness" for uniqueness in results)
+- Diversity rate (i.e., "Fingerprint diversity" for diversity in results)
+
+Run:
+
+```bash
+python diversity_uniqueness.py \
+  --folder /path/to/generated_samples
 ```
 
 ## Soft Constraints - Reranking Molecules
