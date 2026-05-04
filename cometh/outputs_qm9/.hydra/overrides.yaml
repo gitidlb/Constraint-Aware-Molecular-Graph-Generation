@@ -1,4 +1,0 @@
-- +experiment=qm9_sampling.yaml
-- encoding=rrwp
-- general.test_only=/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt
-- general.final_model_samples_to_generate=2000
