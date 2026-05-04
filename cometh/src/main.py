@@ -151,14 +151,23 @@ def main(cfg: omegaconf.DictConfig):
                       gradient_clip_val=cfg.train.clip_grad,
                       logger=False)
 
+    import time
+
     if not cfg.general.test_only:
+        start = time.time()
         trainer.fit(model, datamodule=datamodule, ckpt_path=to_absolute_path(cfg.general.resume) \
             if cfg.general.resume is not None else cfg.general.resume)
+        end = time.time()
+        print(f"Training duration: {end - start:.2f}s")
     else:
         # Start by evaluating test_only_path
         for i in range(cfg.general.num_final_sampling):
             pl.seed_everything(cfg.general.final_seeds[i])
+            start = time.time()
             trainer.test(model, datamodule=datamodule, ckpt_path=to_absolute_path(cfg.general.test_only))
+            end = time.time()
+            print(f"Test run {i} duration: {end - start:.2f}s")
+            
         if cfg.general.evaluate_all_checkpoints:
             pl.seed_everything(cfg.train.seed)
             directory = pathlib.Path(to_absolute_path(cfg.general.test_only)).parents[0]

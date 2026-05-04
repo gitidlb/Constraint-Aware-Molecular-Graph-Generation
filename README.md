@@ -1,6 +1,6 @@
 # Constraint-Aware Molecular Graph Generation via Projection-Based Diffusion
 
-## How to run COMETH sampling
+## How to run Cometh sampling
 
 These instructions are for running Cometh on Rivanna.
 Complete Cometh conda env setup in cometh folder.
@@ -21,7 +21,7 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9 checkpoint from the COMETH GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9, MOSES, and GuacaMol checkpoints from the Cometh GitHub repository.
 
 ### Additional setup
 There are two ways.
@@ -61,8 +61,8 @@ Sampling can be performed on any of the three dataset, but the MOSES and GuacaMo
 encoding=rrwp_moses
 ```
 
-### Additional Note
-Make sure python environment is 3.9 to ensure that graph-tools import works.
+### Additional Notes
+1. Make sure python environment is 3.9 to ensure that graph-tools import works.
 The likely solution is to ensure you are not in a stacked conda environment system, so perform the following until no new changes to the terminal are presented:
 ```
 conda deactivate
@@ -72,6 +72,8 @@ Afterwards, you should be able to run the cometh conda environment and run the s
 which python
 python --version
 ```
+
+2. The sampling was ran with NVIDIA A6000. If you want any additional details for running results, you can refer to the slurm files in the slurm files folder. Modifying the file path that was used in the change directory (cd) command may be needed.
 
 # Structural Constraint Sampling (COMETH)
 

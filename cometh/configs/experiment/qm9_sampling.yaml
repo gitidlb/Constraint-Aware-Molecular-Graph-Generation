@@ -7,6 +7,7 @@ general:
     evaluate_all_checkpoints: False
     num_final_sampling: 5
     final_seeds: [0,1,2,3,4]
+    final_model_samples_to_generate: 10000
 train:
     n_epochs: 500
     batch_size: 512
@@ -21,3 +22,5 @@ model:
     corrector_entry_time: 0.
     corrector_num_steps: 0
     corrector_tau_multiplier: 0.1
+    carbonyl_start_frac: null
+    carbonyl_apply_prob: null

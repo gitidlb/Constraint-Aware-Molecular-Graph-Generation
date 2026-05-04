@@ -9,7 +9,7 @@ general:
     evaluate_all_checkpoints: False
     num_final_sampling: 5
     final_seeds: [0, 1, 2, 3, 4]
-    final_model_samples_to_generate: 25000
+    final_model_samples_to_generate: 18000
     final_model_samples_to_save: 100
     final_model_chains_to_save: 5
 train:
@@ -28,3 +28,5 @@ model:
     corrector_tau_multiplier: 0.1
     hidden_mlp_dims: {'X': 256, 'E': 128, 'y': 64}
     hidden_dims: { 'dx': 256, 'de': 64, 'dy': 128, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 128}
+    carbonyl_start_frac: null
+    carbonyl_apply_prob: null

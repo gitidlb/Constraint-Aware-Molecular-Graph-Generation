@@ -92,6 +92,17 @@ class AbstractDiffusionModel(pl.LightningModule):
         self.corrector_entry_time = cfg.model.corrector_entry_time
         self.corrector_num_steps = cfg.model.corrector_num_steps
 
+        # Carbonyl scaffold settings.
+        # carbonyl_start_frac = 0.6 means enforce only when t_int <= 0.6 * T.
+        self.carbonyl_start_frac = cfg.model.carbonyl_start_frac
+
+        # Soft constraint setting.
+        # 1.0 = hard/current behavior, 0.5 = apply only half the time, 0.25 = softer.
+        self.carbonyl_apply_prob = cfg.model.carbonyl_apply_prob
+        
+        print(f"carbonyl_start_frac={self.carbonyl_start_frac}, carbonyl_apply_prob={self.carbonyl_apply_prob}")
+
+
     def on_train_epoch_start(self) -> None:
         self.print("Starting epoch", self.current_epoch)
         self.start_epoch_time = time.time()
@@ -211,6 +222,72 @@ class AbstractDiffusionModel(pl.LightningModule):
 
         return samples
 
+    def enforce_carbonyl_scaffold(self, z, current_step):
+        """
+        Delayed hard carbonyl scaffold constraint.
+
+        QM9 atom decoder:
+            C = 0, N = 1, O = 2, F = 3
+
+        Bond types:
+            0 = no bond, 1 = single, 2 = double, 3 = triple, 4 = aromatic
+
+        This forces:
+            atom 0 = C
+            atom 1 = O
+            bond(0, 1) = double
+
+        It is applied only in later reverse steps to reduce damage to validity.
+        """
+        if z.X.size(1) < 2:
+            return z
+
+        threshold = int(self.T * self.carbonyl_start_frac)
+
+        # current_step is t_int. Large t_int = early/high noise.
+        # Only enforce when current_step <= threshold.
+        if current_step > threshold:
+            return z
+
+        # Soft/probabilistic application.
+        if self.carbonyl_apply_prob is not None and torch.rand(1, device=z.X.device).item() > self.carbonyl_apply_prob:
+            return z
+
+        repaired = z.copy()
+
+        X = repaired.X.clone()
+        E = repaired.E.clone()
+
+        C_idx = 0
+        O_idx = 2
+        double_bond_idx = 2
+
+        # Force atom 0 to carbon.
+        X[:, 0, :] = 0.0
+        X[:, 0, C_idx] = 1.0
+
+        # Force atom 1 to oxygen.
+        X[:, 1, :] = 0.0
+        X[:, 1, O_idx] = 1.0
+
+        # Force bond 0--1 to double bond.
+        E[:, 0, 1, :] = 0.0
+        E[:, 1, 0, :] = 0.0
+        E[:, 0, 1, double_bond_idx] = 1.0
+        E[:, 1, 0, double_bond_idx] = 1.0
+
+        # Remove self-bonds for scaffold atoms.
+        E[:, 0, 0, :] = 0.0
+        E[:, 1, 1, :] = 0.0
+        E[:, 0, 0, 0] = 1.0
+        E[:, 1, 1, 0] = 1.0
+
+        repaired.X = X
+        repaired.E = E
+        repaired = repaired.mask(repaired.node_mask)
+
+        return repaired
+        
     @torch.no_grad()
     def sample_batch(self, batch_id: int, batch_size: int, keep_chain: int, number_chain_steps: int,
                      save_final: int, num_nodes=None):
@@ -223,6 +300,9 @@ class AbstractDiffusionModel(pl.LightningModule):
         :param keep_chain_steps: number of timesteps to save for each chain
         :return: graph_list. Each element of this list is a tuple (atom_types, charges, positions)
         """
+
+        use_scaffold = self.carbonyl_start_frac is not None
+
         # print(f"Sampling a batch with {len(n_nodes)} graphs. Saving {save_final} visualization and {keep_chain} full chains.")
         assert keep_chain >= 0
         assert save_final >= 0
@@ -259,12 +339,19 @@ class AbstractDiffusionModel(pl.LightningModule):
         for t_int in reversed(range(1, self.T + 1)):
             z_s = self.sample_zs_from_zt(z_t=z_t)
 
+            # Delayed carbonyl scaffold enforcement.
+            if use_scaffold:
+                z_s = self.enforce_carbonyl_scaffold(z_s, t_int)
+
             if z_t.t[0] <= (1.0 - self.min_time) * self.corrector_entry_time + self.min_time:
                 for _ in range(self.corrector_num_steps):
                     z_s = self.sample_zs_from_zt(z_t=z_s, corrector=True)
 
-            # Save the first keep_chain graphs
-            if ((t_int-1) * number_chain_steps) % self.T == 0:
+                    # Enforce scaffold after each corrector step too.
+                    if use_scaffold:
+                        z_s = self.enforce_carbonyl_scaffold(z_s, t_int)
+
+            if ((t_int - 1) * number_chain_steps) % self.T == 0:
                 write_index = number_chain_steps - 1 - ((t_int * number_chain_steps) // self.T)
                 discrete_z_s = z_s.collapse()
                 chains.X[write_index] = discrete_z_s.X[:keep_chain]
@@ -274,6 +361,10 @@ class AbstractDiffusionModel(pl.LightningModule):
 
         # Last network pass at t_min
         z_0 = self.sample_zs_from_zt(z_t, last_pass=True)
+
+        # Final enforcement always applied.
+        if use_scaffold:
+            z_0 = self.enforce_carbonyl_scaffold(z_0, 0)
 
         # Sample final data
         sampled = z_0.collapse()

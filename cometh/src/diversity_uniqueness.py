@@ -2,13 +2,14 @@ import os
 import glob
 import random
 import numpy as np
-
+import argparse
 from rdkit import Chem, DataStructs, RDLogger
 from rdkit.Chem import AllChem
 
 RDLogger.DisableLog("rdApp.*")
 
-ATOM_DECODER = ["C", "N", "O", "F"]
+ATOM_DECODER_QM9 = ["C", "N", "O", "F"]
+ATOM_DECODER_MOSES = ["C", "N", "O", "F", "S", "Cl", "Br"]
 
 
 def parse_generated_samples_file(path):
@@ -46,7 +47,7 @@ def parse_generated_samples_file(path):
     return molecules
 
 
-def build_mol(atom_types, edge_types):
+def build_mol(folder, atom_types, edge_types):
     bond_map = {
         1: Chem.BondType.SINGLE,
         2: Chem.BondType.DOUBLE,
@@ -57,7 +58,10 @@ def build_mol(atom_types, edge_types):
     mol = Chem.RWMol()
 
     for atom_idx in atom_types:
-        mol.AddAtom(Chem.Atom(ATOM_DECODER[int(atom_idx)]))
+        if "qm9" in folder:
+            mol.AddAtom(Chem.Atom(ATOM_DECODER_QM9[int(atom_idx)]))
+        elif "moses" in folder:
+            mol.AddAtom(Chem.Atom(ATOM_DECODER_MOSES[int(atom_idx)]))
 
     n = len(atom_types)
     for i in range(n):
@@ -74,9 +78,52 @@ def build_mol(atom_types, edge_types):
         return None
 
 
-# ✅ FIXED: limit number of molecules
-def load_molecules(folder, max_molecules=2000):
+def find_sample_files(folder):
     files = sorted(glob.glob(os.path.join(folder, "**", "generated_samples*.txt"), recursive=True))
+    
+    resolved = []
+    broken_symlinks = []
+    
+    for f in files:
+        if os.path.exists(f):
+            resolved.append(f)
+        elif os.path.islink(f):
+            broken_symlinks.append(f)
+    
+    if resolved:
+        return resolved
+    
+    # Fallback: try to resolve broken symlinks by finding real run folders
+    if broken_symlinks:
+        print(f"Warning: Found {len(broken_symlinks)} broken symlink(s), attempting to resolve via run folders...")
+        
+        wandb_dir = os.path.join(folder, "wandb")
+        if not os.path.isdir(wandb_dir):
+            # walk up to find wandb dir
+            wandb_dir = None
+            for root, dirs, _ in os.walk(folder):
+                if "wandb" in dirs:
+                    wandb_dir = os.path.join(root, "wandb")
+                    break
+        
+        if wandb_dir:
+            run_folders = sorted(glob.glob(os.path.join(wandb_dir, "run-*")))
+            for run_folder in run_folders:
+                candidate_files = sorted(glob.glob(os.path.join(run_folder, "**", "generated_samples*.txt"), recursive=True))
+                real_files = [f for f in candidate_files if os.path.exists(f)]
+                if real_files:
+                    print(f"Resolved to run folder: {run_folder}")
+                    return real_files
+    
+    raise FileNotFoundError(
+        f"No valid generated_samples*.txt found in {folder}. "
+        f"Found {len(broken_symlinks)} broken symlink(s) and could not resolve to a real run folder."
+    )
+
+
+# Limit number of molecules
+def load_molecules(folder, max_molecules=2000):
+    files = find_sample_files(folder)
     mols = []
 
     for f in files:
@@ -86,7 +133,7 @@ def load_molecules(folder, max_molecules=2000):
             if len(mols) >= max_molecules:
                 return mols
 
-            mol = build_mol(atom_types, edge_types)
+            mol = build_mol(folder, atom_types, edge_types)
             if mol is not None:
                 mols.append(mol)
 
@@ -126,9 +173,13 @@ def compute_diversity(mols, max_pairs=10000):
 
 
 if __name__ == "__main__":
-    folder = "/scratch/dye7jx/Constraint-Aware-Molecular-Graph-Generation/carbonyl_t06_p05_filtered"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--folder", required=True, help="Path to folder of generated sample files")
+    args = parser.parse_args()
 
-    # ✅ limit to 2000 molecules
+    folder = args.folder
+
+    # Limit to 2000 molecules
     mols = load_molecules(folder, max_molecules=2000)
 
     print("\n=== Uniqueness and Diversity Report ===")

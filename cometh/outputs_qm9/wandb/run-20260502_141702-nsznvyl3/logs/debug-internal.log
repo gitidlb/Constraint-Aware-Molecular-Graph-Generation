@@ -1,0 +1,254 @@
+2026-05-02 14:17:08,745 INFO    StreamThr :99815 [internal.py:wandb_internal():86] W&B internal server running at pid: 99815, started at: 2026-05-02 14:17:08.744322
+2026-05-02 14:17:08,746 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status
+2026-05-02 14:17:08,747 INFO    WriterThread:99815 [datastore.py:open_for_write():85] open: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/run-nsznvyl3.wandb
+2026-05-02 14:17:08,748 DEBUG   SenderThread:99815 [sender.py:send():369] send: header
+2026-05-02 14:17:08,748 DEBUG   SenderThread:99815 [sender.py:send():369] send: run
+2026-05-02 14:17:09,143 INFO    SenderThread:99815 [dir_watcher.py:__init__():211] watching files in: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files
+2026-05-02 14:17:09,143 INFO    SenderThread:99815 [sender.py:_start_run_threads():1100] run started: nsznvyl3 with start time 1777745827.786227
+2026-05-02 14:17:09,146 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: summary_record
+2026-05-02 14:17:09,147 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:17:09,149 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: check_version
+2026-05-02 14:17:09,149 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: check_version
+2026-05-02 14:17:09,230 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: run_start
+2026-05-02 14:17:09,231 DEBUG   HandlerThread:99815 [system_info.py:__init__():31] System info init
+2026-05-02 14:17:09,231 DEBUG   HandlerThread:99815 [system_info.py:__init__():46] System info init done
+2026-05-02 14:17:09,231 INFO    HandlerThread:99815 [system_monitor.py:probe():201] Collecting system info
+2026-05-02 14:17:09,278 DEBUG   HandlerThread:99815 [system_info.py:probe():195] Probing system
+2026-05-02 14:17:09,278 DEBUG   HandlerThread:99815 [gitlib.py:_init_repo():53] git repository is invalid
+2026-05-02 14:17:09,278 DEBUG   HandlerThread:99815 [system_info.py:probe():240] Probing system done
+2026-05-02 14:17:09,278 DEBUG   HandlerThread:99815 [system_monitor.py:probe():210] {'os': 'Linux-4.18.0-553.47.1.el8_10.x86_64-x86_64-with-glibc2.28', 'python': '3.9.19', 'heartbeatAt': '2026-05-02T18:17:09.278328', 'startedAt': '2026-05-02T18:17:02.800131', 'docker': None, 'cuda': None, 'args': ('+experiment=qm9_sampling.yaml', 'encoding=rrwp', 'general.test_only=/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt', 'hydra.run.dir=/home/ryp8rx/outputs_qm9', 'general.final_model_samples_to_generate=2000'), 'state': 'running', 'program': '/sfs/gpfs/tardis/home/ryp8rx/Constraint-Aware-Molecular-Graph-Generation/cometh/src/main.py', 'host': 'udc-an38-17', 'username': 'ryp8rx', 'executable': '/home/ryp8rx/.conda/envs/cometh/bin/python', 'cpu_count': 48, 'cpu_count_logical': 48, 'cpu_freq': {'current': 2382.3562708333334, 'min': 1500.0, 'max': 2300.0}, 'cpu_freq_per_core': [{'current': 3091.14, 'min': 1500.0, 'max': 2300.0}, {'current': 3091.177, 'min': 1500.0, 'max': 2300.0}, {'current': 3087.201, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 3092.276, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 3099.896, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 3099.249, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}, {'current': 2300.0, 'min': 1500.0, 'max': 2300.0}], 'disk': {'total': 658.3576431274414, 'used': 496.3672103881836}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 251.7499771118164}}
+2026-05-02 14:17:09,279 INFO    HandlerThread:99815 [system_monitor.py:probe():211] Finished collecting system info
+2026-05-02 14:17:09,279 INFO    HandlerThread:99815 [system_monitor.py:probe():214] Publishing system info
+2026-05-02 14:17:09,279 DEBUG   HandlerThread:99815 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2026-05-02 14:17:09,280 DEBUG   HandlerThread:99815 [system_info.py:_save_pip():67] Saving pip packages done
+2026-05-02 14:17:09,280 DEBUG   HandlerThread:99815 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2026-05-02 14:17:10,145 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/conda-environment.yaml
+2026-05-02 14:17:10,145 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/requirements.txt
+2026-05-02 14:17:10,145 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-summary.json
+2026-05-02 14:17:15,037 DEBUG   HandlerThread:99815 [system_info.py:_save_conda():86] Saving conda packages done
+2026-05-02 14:17:15,039 INFO    HandlerThread:99815 [system_monitor.py:probe():216] Finished publishing system info
+2026-05-02 14:17:15,039 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:15,039 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: keepalive
+2026-05-02 14:17:15,040 DEBUG   SenderThread:99815 [sender.py:send():369] send: files
+2026-05-02 14:17:15,040 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2026-05-02 14:17:15,045 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:17:15,045 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:17:15,145 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/conda-environment.yaml
+2026-05-02 14:17:15,146 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/generated_samples1.txt
+2026-05-02 14:17:15,146 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-metadata.json
+2026-05-02 14:17:15,146 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/final_smiles_GR0_0.txt
+2026-05-02 14:17:15,233 DEBUG   SenderThread:99815 [sender.py:send():369] send: telemetry
+2026-05-02 14:17:15,233 DEBUG   SenderThread:99815 [sender.py:send():369] send: telemetry
+2026-05-02 14:17:15,233 DEBUG   SenderThread:99815 [sender.py:send():369] send: files
+2026-05-02 14:17:15,233 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file *.txt with policy live
+2026-05-02 14:17:15,382 INFO    wandb-upload_0:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/b9n8t6go-wandb-metadata.json
+2026-05-02 14:17:15,516 INFO    wandb-upload_1:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/mrppumsi-generated_samples1.txt
+2026-05-02 14:17:15,555 INFO    wandb-upload_2:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/651qr6fb-requirements.txt
+2026-05-02 14:17:15,600 INFO    wandb-upload_3:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/84tpnctb-final_smiles_GR0_0.txt
+2026-05-02 14:17:18,329 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:17:19,147 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:17:19,340 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:21,148 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:17:24,340 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:29,341 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:30,044 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:17:30,045 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:17:35,218 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:40,223 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:41,157 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/config.yaml
+2026-05-02 14:17:45,044 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:17:45,045 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:17:46,148 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:51,149 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:17:56,149 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:00,045 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:18:00,046 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:18:01,185 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:06,185 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:11,186 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:15,045 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:18:15,046 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:18:16,200 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:21,201 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:26,201 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:30,045 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:18:30,045 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:18:31,225 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:36,226 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:41,226 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:45,045 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:18:45,046 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:18:47,226 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:49,184 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:18:51,185 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:18:52,725 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:57,726 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:18:59,899 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:19:00,046 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: stop_status
+2026-05-02 14:19:00,047 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: stop_status
+2026-05-02 14:19:00,363 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:19:00,900 DEBUG   SenderThread:99815 [sender.py:send():369] send: config
+2026-05-02 14:19:01,002 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: log_artifact
+2026-05-02 14:19:01,002 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: log_artifact
+2026-05-02 14:19:01,010 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:19:01,190 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:19:01,190 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table/node distribution_table_0_e83911d560064187eb76.table.json
+2026-05-02 14:19:01,190 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table
+2026-05-02 14:19:01,190 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media
+2026-05-02 14:19:01,454 INFO    wandb-upload_0:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/ihhp0mog-media/table/node distribution_table_0_e83911d560064187eb76.table.json
+2026-05-02 14:19:01,643 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: log_artifact
+2026-05-02 14:19:01,651 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:19:01,789 INFO    wandb-upload_2:99815 [upload_job.py:push():91] Uploaded file /home/ryp8rx/.local/share/wandb/artifacts/staging/tmpiskkye8_
+2026-05-02 14:19:02,190 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_created():272] file/dir created: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json
+2026-05-02 14:19:02,191 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table
+2026-05-02 14:19:02,374 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: partial_history
+2026-05-02 14:19:02,398 INFO    SenderThread:99815 [sender.py:send_request_log_artifact():1414] logged artifact run-nsznvyl3-nodedistribution_table - {'id': 'QXJ0aWZhY3Q6Mjc4Njg3OTQwNg==', 'digest': '9e4fb90a7195651aa1291e1d22507737', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjEwMzAzMzIyMDk=', 'latestArtifact': None}, 'version': 'latest'}
+2026-05-02 14:19:02,398 DEBUG   SenderThread:99815 [sender.py:send():369] send: files
+2026-05-02 14:19:02,398 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file media/table/node distribution_table_0_e83911d560064187eb76.table.json with policy now
+2026-05-02 14:19:02,399 DEBUG   SenderThread:99815 [sender.py:send():369] send: history
+2026-05-02 14:19:02,399 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: summary_record
+2026-05-02 14:19:02,399 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:19:02,399 DEBUG   SenderThread:99815 [sender.py:send():369] send: config
+2026-05-02 14:19:02,400 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: log_artifact
+2026-05-02 14:19:02,662 INFO    wandb-upload_3:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/8ddsw115-media/table/node distribution_table_0_e83911d560064187eb76.table.json
+2026-05-02 14:19:02,737 INFO    wandb-upload_1:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/omhgbn4k-media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json
+2026-05-02 14:19:03,026 INFO    wandb-upload_0:99815 [upload_job.py:push():91] Uploaded file /home/ryp8rx/.local/share/wandb/artifacts/staging/tmphmq6hhfg
+2026-05-02 14:19:03,194 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-summary.json
+2026-05-02 14:19:03,532 INFO    SenderThread:99815 [sender.py:send_request_log_artifact():1414] logged artifact run-nsznvyl3-edgedistribution_table - {'id': 'QXJ0aWZhY3Q6Mjc4Njg3OTQ4NQ==', 'digest': 'b6118798a26fc9ca6d80c41ac6c219b3', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjEwMzAzMzIyMjg=', 'latestArtifact': None}, 'version': 'latest'}
+2026-05-02 14:19:03,532 DEBUG   SenderThread:99815 [sender.py:send():369] send: files
+2026-05-02 14:19:03,532 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json with policy now
+2026-05-02 14:19:03,532 DEBUG   SenderThread:99815 [sender.py:send():369] send: history
+2026-05-02 14:19:03,532 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: summary_record
+2026-05-02 14:19:03,533 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:19:03,533 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:19:03,624 DEBUG   SenderThread:99815 [sender.py:send():369] send: telemetry
+2026-05-02 14:19:03,626 DEBUG   SenderThread:99815 [sender.py:send():369] send: exit
+2026-05-02 14:19:03,626 INFO    SenderThread:99815 [sender.py:send_exit():574] handling exit code: 0
+2026-05-02 14:19:03,626 INFO    SenderThread:99815 [sender.py:send_exit():576] handling runtime: 114
+2026-05-02 14:19:03,626 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:19:03,626 INFO    SenderThread:99815 [sender.py:send_exit():582] send defer
+2026-05-02 14:19:03,626 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,626 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 0
+2026-05-02 14:19:03,627 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 0
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 1
+2026-05-02 14:19:03,627 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,627 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 1
+2026-05-02 14:19:03,627 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 1
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 2
+2026-05-02 14:19:03,627 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,627 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 2
+2026-05-02 14:19:03,627 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 2
+2026-05-02 14:19:03,627 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 3
+2026-05-02 14:19:03,627 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,627 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 3
+2026-05-02 14:19:03,628 DEBUG   SenderThread:99815 [sender.py:send():369] send: history
+2026-05-02 14:19:03,628 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: summary_record
+2026-05-02 14:19:03,629 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:19:03,629 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,629 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 3
+2026-05-02 14:19:03,629 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 4
+2026-05-02 14:19:03,629 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,629 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 4
+2026-05-02 14:19:03,629 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,629 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 4
+2026-05-02 14:19:03,629 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 5
+2026-05-02 14:19:03,629 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,629 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 5
+2026-05-02 14:19:03,630 DEBUG   SenderThread:99815 [sender.py:send():369] send: summary
+2026-05-02 14:19:03,630 INFO    SenderThread:99815 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2026-05-02 14:19:03,630 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,630 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 5
+2026-05-02 14:19:03,630 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 6
+2026-05-02 14:19:03,630 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,630 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 6
+2026-05-02 14:19:03,630 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,630 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 6
+2026-05-02 14:19:03,634 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: status_report
+2026-05-02 14:19:03,761 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 7
+2026-05-02 14:19:03,761 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:03,761 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 7
+2026-05-02 14:19:03,761 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:03,761 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 7
+2026-05-02 14:19:03,892 INFO    wandb-upload_3:99815 [upload_job.py:push():133] Uploaded file /tmp/tmpp66fvcd2wandb/l0jm30py-media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json
+2026-05-02 14:19:04,194 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/config.yaml
+2026-05-02 14:19:04,195 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-summary.json
+2026-05-02 14:19:04,626 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: poll_exit
+2026-05-02 14:19:05,195 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:19:05,561 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 8
+2026-05-02 14:19:05,561 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: poll_exit
+2026-05-02 14:19:05,561 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:05,561 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 8
+2026-05-02 14:19:05,561 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 8
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [job_builder.py:build():232] Attempting to build job artifact
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [job_builder.py:build():266] no source found
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 9
+2026-05-02 14:19:05,562 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:05,562 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 9
+2026-05-02 14:19:05,562 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 9
+2026-05-02 14:19:05,562 INFO    SenderThread:99815 [dir_watcher.py:finish():359] shutting down directory watcher
+2026-05-02 14:19:05,627 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: poll_exit
+2026-05-02 14:19:06,196 INFO    Thread-26 :99815 [dir_watcher.py:_on_file_modified():289] file/dir modified: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:19:06,197 INFO    SenderThread:99815 [dir_watcher.py:finish():389] scan: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files
+2026-05-02 14:19:06,197 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/generated_samples1.txt generated_samples1.txt
+2026-05-02 14:19:06,197 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/conda-environment.yaml conda-environment.yaml
+2026-05-02 14:19:06,197 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-metadata.json wandb-metadata.json
+2026-05-02 14:19:06,197 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/config.yaml config.yaml
+2026-05-02 14:19:06,200 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/requirements.txt requirements.txt
+2026-05-02 14:19:06,200 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/final_smiles_GR0_0.txt final_smiles_GR0_0.txt
+2026-05-02 14:19:06,203 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-summary.json wandb-summary.json
+2026-05-02 14:19:06,203 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log output.log
+2026-05-02 14:19:06,209 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json media/table/edge distribution_table_1_3d03b106b1da7647dbec.table.json
+2026-05-02 14:19:06,209 INFO    SenderThread:99815 [dir_watcher.py:finish():403] scan save: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/media/table/node distribution_table_0_e83911d560064187eb76.table.json media/table/node distribution_table_0_e83911d560064187eb76.table.json
+2026-05-02 14:19:06,209 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 10
+2026-05-02 14:19:06,209 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: poll_exit
+2026-05-02 14:19:06,210 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:06,210 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 10
+2026-05-02 14:19:06,210 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:06,210 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 10
+2026-05-02 14:19:06,210 INFO    SenderThread:99815 [file_pusher.py:finish():159] shutting down file pusher
+2026-05-02 14:19:06,452 INFO    wandb-upload_2:99815 [upload_job.py:push():133] Uploaded file /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/config.yaml
+2026-05-02 14:19:06,525 INFO    wandb-upload_0:99815 [upload_job.py:push():133] Uploaded file /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/wandb-summary.json
+2026-05-02 14:19:06,627 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: poll_exit
+2026-05-02 14:19:06,627 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: poll_exit
+2026-05-02 14:19:06,632 INFO    wandb-upload_1:99815 [upload_job.py:push():133] Uploaded file /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/conda-environment.yaml
+2026-05-02 14:19:06,651 INFO    wandb-upload_3:99815 [upload_job.py:push():133] Uploaded file /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/files/output.log
+2026-05-02 14:19:06,851 INFO    Thread-25 :99815 [sender.py:transition_state():602] send defer: 11
+2026-05-02 14:19:06,851 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:06,852 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 11
+2026-05-02 14:19:06,852 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:06,852 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 11
+2026-05-02 14:19:06,852 INFO    SenderThread:99815 [file_pusher.py:join():164] waiting for file pusher
+2026-05-02 14:19:06,852 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 12
+2026-05-02 14:19:06,852 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:06,852 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 12
+2026-05-02 14:19:06,852 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:06,852 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 12
+2026-05-02 14:19:07,519 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 13
+2026-05-02 14:19:07,519 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:07,519 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 13
+2026-05-02 14:19:07,519 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:07,519 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 13
+2026-05-02 14:19:07,519 INFO    SenderThread:99815 [sender.py:transition_state():602] send defer: 14
+2026-05-02 14:19:07,520 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: defer
+2026-05-02 14:19:07,520 INFO    HandlerThread:99815 [handler.py:handle_request_defer():170] handle defer: 14
+2026-05-02 14:19:07,520 DEBUG   SenderThread:99815 [sender.py:send():369] send: final
+2026-05-02 14:19:07,520 DEBUG   SenderThread:99815 [sender.py:send():369] send: footer
+2026-05-02 14:19:07,520 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: defer
+2026-05-02 14:19:07,520 INFO    SenderThread:99815 [sender.py:send_request_defer():598] handle sender defer: 14
+2026-05-02 14:19:07,521 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: poll_exit
+2026-05-02 14:19:07,521 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: poll_exit
+2026-05-02 14:19:07,522 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: server_info
+2026-05-02 14:19:07,522 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: get_summary
+2026-05-02 14:19:07,522 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: sampled_history
+2026-05-02 14:19:07,522 DEBUG   SenderThread:99815 [sender.py:send_request():396] send_request: server_info
+2026-05-02 14:19:07,577 DEBUG   HandlerThread:99815 [handler.py:handle_request():144] handle_request: shutdown
+2026-05-02 14:19:07,577 INFO    HandlerThread:99815 [handler.py:finish():854] shutting down handler
+2026-05-02 14:19:08,522 INFO    WriterThread:99815 [datastore.py:close():298] close: /sfs/gpfs/tardis/home/ryp8rx/outputs_qm9/wandb/run-20260502_141702-nsznvyl3/run-nsznvyl3.wandb
+2026-05-02 14:19:08,576 INFO    SenderThread:99815 [sender.py:finish():1526] shutting down sender
+2026-05-02 14:19:08,576 INFO    SenderThread:99815 [file_pusher.py:finish():159] shutting down file pusher
+2026-05-02 14:19:08,576 INFO    SenderThread:99815 [file_pusher.py:join():164] waiting for file pusher
