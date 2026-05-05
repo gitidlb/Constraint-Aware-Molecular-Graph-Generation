@@ -296,3 +296,20 @@ python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_
 - Returns the top-K most drug-like molecules within the MW range.
 
 This method combines a hard MW boundary with soft QED ranking. It is useful when the target application has a firm size requirement but otherwise wants to maximise drug-likeness among the valid candidates.
+
+
+## Additional Project Notes
+The sanitization of aromantic structures in molecules was added to the evaluation/test-only pipeline. Thus, MOSES doesn't have the problem of kekulizing away molecules due to aromatic structures. Unfortunately, there was not sufficient time to run results for MOSES, but you can run this separate to explore this dataset.
+
+### Setup changes
+Go to the COMETH GitHub repository or the cometh folder and download the MOSES checkpoint (i.e., "moses.ckpt").
+
+Example to run sampling:
+```bash
+python main.py +experiment=moses_sampling.yaml \
+  encoding=rrwp_moses general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/moses.ckpt \
+  hydra.run.dir=/home/{computingID}/outputs \
+  general.final_model_samples_to_generate=2000
+```
+### Rest of pipeline
+Other than the argument changes, it essentially follows the same pipeline as described above.
