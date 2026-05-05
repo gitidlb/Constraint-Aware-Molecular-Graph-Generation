@@ -274,7 +274,7 @@ python diversity_uniqueness.py \
 
 You could run with the outputs from solely the sampling without the projection-based hard constraint on valency as well.
 
-## Method 1: Rank by QED only
+## Method 1: Rank by QED only (i.e., the one we utilize for the report)
 To run soft constraint script for this method, use the following:
 ```
 python rerank_molecules.py --input /home/{computingID}/outputs_delete/generated_smiles.txt --output top_molecules.tsv --top_k 20
