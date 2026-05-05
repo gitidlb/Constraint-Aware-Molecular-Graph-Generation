@@ -566,6 +566,13 @@ def build_molecule(atom_types, edge_types, atom_decoder, verbose=False):
                 if an in (7, 8, 16) and (v - ATOM_VALENCY[an]) == 1:
                     mol.GetAtomWithIdx(idx).SetFormalCharge(1)
                     # print("Formal charge added")
+    
+    try:
+        mol = mol.GetMol()
+        Chem.SanitizeMol(mol)          # restores aromaticity from explicit AROMATIC bonds
+        smi = Chem.MolToSmiles(mol)    # canonicalize
+        mol = Chem.MolFromSmiles(smi)  # round-trip ensures clean, fully sanitized mol
+    except Exception:
+        mol = None
+    
     return mol
-
-
