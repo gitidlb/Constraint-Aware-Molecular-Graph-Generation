@@ -21,7 +21,7 @@ graph-tool
 graph-tool-base
 ```
 
-Make a checkpoints folder in the cometh folder, and download the QM9 and MOSES checkpoints (i.e., "qm9.ckpt" and "moses.ckpt") from the COMETH GitHub repository.
+Make a checkpoints folder in the cometh folder, and download the QM9 checkpoint (i.e., "qm9.ckpt") from the COMETH GitHub repository.
 
 ### Additional setup
 There are two ways.
@@ -58,12 +58,6 @@ python main.py +experiment=qm9_sampling.yaml \
   encoding=rrwp general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/qm9.ckpt \
   hydra.run.dir=/home/{computingID}/outputs \
   general.final_model_samples_to_generate=2000
-```
-Sampling can be performed on any of the datasets, but the MOSES dataset needs the following argument replacements for the sampling compared to QM9:
-```
-+experiment=moses_sampling.yaml
-encoding=rrwp_moses
-general.test_only=/home/{computingID}/Constraint-Aware-Molecular-Graph-Generation/cometh/checkpoints/moses.ckpt
 ```
 
 ### Additional Notes

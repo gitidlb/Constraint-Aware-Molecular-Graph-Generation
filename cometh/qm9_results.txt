@@ -1,0 +1,1466 @@
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9
+total_molecules: 2000
+molecules_fully_valency_valid: 1989
+molecules_fully_valency_valid_rate: 0.994500
+molecules_with_any_violation: 11
+molecules_with_any_violation_rate: 0.005500
+molecules_with_2plus_violations: 1
+molecules_with_2plus_violations_rate: 0.000500
+violating_atom_total: 12
+atom_total: 17581
+atom_level_valency_valid_rate: 0.999317
+avg_violating_atoms_per_molecule: 0.006000
+avg_max_excess_valency_per_molecule: 0.005500
+avg_total_excess_valency_per_molecule: 0.006000
+
+RDKit error counts:
+  AtomValence: 19
+  NoError: 1981
+
+Per-atom violation rates:
+  C: 11/12762 = 0.000862
+  F: 0/46 = 0.000000
+  N: 1/1990 = 0.000503
+  O: 0/2783 = 0.000000
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_03
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03
+total_molecules: 2000
+molecules_fully_valency_valid: 1547
+molecules_fully_valency_valid_rate: 0.773500
+molecules_with_any_violation: 453
+molecules_with_any_violation_rate: 0.226500
+molecules_with_2plus_violations: 175
+molecules_with_2plus_violations_rate: 0.087500
+violating_atom_total: 630
+atom_total: 17581
+atom_level_valency_valid_rate: 0.964166
+avg_violating_atoms_per_molecule: 0.315000
+avg_max_excess_valency_per_molecule: 0.306000
+avg_total_excess_valency_per_molecule: 0.400000
+
+RDKit error counts:
+  AtomValence: 523
+  NoError: 1477
+
+Per-atom violation rates:
+  C: 275/11685 = 0.023534
+  F: 0/36 = 0.000000
+  N: 1/1868 = 0.000535
+  O: 354/3992 = 0.088677
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_06
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06
+total_molecules: 2000
+molecules_fully_valency_valid: 1705
+molecules_fully_valency_valid_rate: 0.852500
+molecules_with_any_violation: 295
+molecules_with_any_violation_rate: 0.147500
+molecules_with_2plus_violations: 105
+molecules_with_2plus_violations_rate: 0.052500
+violating_atom_total: 401
+atom_total: 17581
+atom_level_valency_valid_rate: 0.977191
+avg_violating_atoms_per_molecule: 0.200500
+avg_max_excess_valency_per_molecule: 0.192500
+avg_total_excess_valency_per_molecule: 0.248000
+
+RDKit error counts:
+  AtomValence: 369
+  NoError: 1631
+
+Per-atom violation rates:
+  C: 169/11662 = 0.014492
+  F: 0/41 = 0.000000
+  N: 1/1929 = 0.000518
+  O: 231/3949 = 0.058496
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_09
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09
+total_molecules: 2000
+molecules_fully_valency_valid: 1712
+molecules_fully_valency_valid_rate: 0.856000
+molecules_with_any_violation: 288
+molecules_with_any_violation_rate: 0.144000
+molecules_with_2plus_violations: 103
+molecules_with_2plus_violations_rate: 0.051500
+violating_atom_total: 392
+atom_total: 17581
+atom_level_valency_valid_rate: 0.977703
+avg_violating_atoms_per_molecule: 0.196000
+avg_max_excess_valency_per_molecule: 0.188000
+avg_total_excess_valency_per_molecule: 0.242500
+
+RDKit error counts:
+  AtomValence: 359
+  NoError: 1641
+
+Per-atom violation rates:
+  C: 166/11652 = 0.014246
+  F: 0/41 = 0.000000
+  N: 1/1936 = 0.000517
+  O: 225/3952 = 0.056933
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_03_025
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_025
+total_molecules: 2000
+molecules_fully_valency_valid: 1982
+molecules_fully_valency_valid_rate: 0.991000
+molecules_with_any_violation: 18
+molecules_with_any_violation_rate: 0.009000
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 18
+atom_total: 17581
+atom_level_valency_valid_rate: 0.998976
+avg_violating_atoms_per_molecule: 0.009000
+avg_max_excess_valency_per_molecule: 0.009500
+avg_total_excess_valency_per_molecule: 0.009500
+
+RDKit error counts:
+  AtomValence: 38
+  NoError: 1962
+
+Per-atom violation rates:
+  C: 14/11937 = 0.001173
+  F: 0/38 = 0.000000
+  N: 3/1825 = 0.001644
+  O: 1/3781 = 0.000264
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_03_05
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_05
+total_molecules: 2000
+molecules_fully_valency_valid: 1767
+molecules_fully_valency_valid_rate: 0.883500
+molecules_with_any_violation: 233
+molecules_with_any_violation_rate: 0.116500
+molecules_with_2plus_violations: 88
+molecules_with_2plus_violations_rate: 0.044000
+violating_atom_total: 321
+atom_total: 17581
+atom_level_valency_valid_rate: 0.981742
+avg_violating_atoms_per_molecule: 0.160500
+avg_max_excess_valency_per_molecule: 0.156000
+avg_total_excess_valency_per_molecule: 0.203500
+
+RDKit error counts:
+  AtomValence: 300
+  NoError: 1700
+
+Per-atom violation rates:
+  C: 143/11834 = 0.012084
+  F: 0/39 = 0.000000
+  N: 2/1799 = 0.001112
+  O: 176/3909 = 0.045024
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_03_075
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_075
+total_molecules: 2000
+molecules_fully_valency_valid: 1595
+molecules_fully_valency_valid_rate: 0.797500
+molecules_with_any_violation: 405
+molecules_with_any_violation_rate: 0.202500
+molecules_with_2plus_violations: 156
+molecules_with_2plus_violations_rate: 0.078000
+violating_atom_total: 562
+atom_total: 17581
+atom_level_valency_valid_rate: 0.968034
+avg_violating_atoms_per_molecule: 0.281000
+avg_max_excess_valency_per_molecule: 0.280000
+avg_total_excess_valency_per_molecule: 0.364500
+
+RDKit error counts:
+  AtomValence: 493
+  NoError: 1507
+
+Per-atom violation rates:
+  C: 239/11746 = 0.020347
+  F: 0/39 = 0.000000
+  N: 1/1788 = 0.000559
+  O: 322/4008 = 0.080339
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_06_025
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_025
+total_molecules: 2000
+molecules_fully_valency_valid: 1977
+molecules_fully_valency_valid_rate: 0.988500
+molecules_with_any_violation: 23
+molecules_with_any_violation_rate: 0.011500
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 23
+atom_total: 17581
+atom_level_valency_valid_rate: 0.998692
+avg_violating_atoms_per_molecule: 0.011500
+avg_max_excess_valency_per_molecule: 0.011500
+avg_total_excess_valency_per_molecule: 0.011500
+
+RDKit error counts:
+  AtomValence: 40
+  NoError: 1960
+
+Per-atom violation rates:
+  C: 18/11659 = 0.001544
+  F: 0/34 = 0.000000
+  N: 4/1996 = 0.002004
+  O: 1/3892 = 0.000257
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_06_05
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05
+total_molecules: 2000
+molecules_fully_valency_valid: 1977
+molecules_fully_valency_valid_rate: 0.988500
+molecules_with_any_violation: 23
+molecules_with_any_violation_rate: 0.011500
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 23
+atom_total: 17581
+atom_level_valency_valid_rate: 0.998692
+avg_violating_atoms_per_molecule: 0.011500
+avg_max_excess_valency_per_molecule: 0.011500
+avg_total_excess_valency_per_molecule: 0.011500
+
+RDKit error counts:
+  AtomValence: 42
+  NoError: 1958
+
+Per-atom violation rates:
+  C: 18/11635 = 0.001547
+  F: 0/33 = 0.000000
+  N: 4/2008 = 0.001992
+  O: 1/3905 = 0.000256
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_06_075
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_075
+total_molecules: 2000
+molecules_fully_valency_valid: 1802
+molecules_fully_valency_valid_rate: 0.901000
+molecules_with_any_violation: 198
+molecules_with_any_violation_rate: 0.099000
+molecules_with_2plus_violations: 68
+molecules_with_2plus_violations_rate: 0.034000
+violating_atom_total: 267
+atom_total: 17581
+atom_level_valency_valid_rate: 0.984813
+avg_violating_atoms_per_molecule: 0.133500
+avg_max_excess_valency_per_molecule: 0.124000
+avg_total_excess_valency_per_molecule: 0.160500
+
+RDKit error counts:
+  AtomValence: 252
+  NoError: 1748
+
+Per-atom violation rates:
+  C: 124/11581 = 0.010707
+  F: 0/34 = 0.000000
+  N: 1/1989 = 0.000503
+  O: 142/3977 = 0.035705
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_09_025
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_025
+total_molecules: 2000
+molecules_fully_valency_valid: 1989
+molecules_fully_valency_valid_rate: 0.994500
+molecules_with_any_violation: 11
+molecules_with_any_violation_rate: 0.005500
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 11
+atom_total: 17581
+atom_level_valency_valid_rate: 0.999374
+avg_violating_atoms_per_molecule: 0.005500
+avg_max_excess_valency_per_molecule: 0.006500
+avg_total_excess_valency_per_molecule: 0.006500
+
+RDKit error counts:
+  AtomValence: 28
+  NoError: 1972
+
+Per-atom violation rates:
+  C: 8/11719 = 0.000683
+  F: 0/47 = 0.000000
+  N: 3/1980 = 0.001515
+  O: 0/3835 = 0.000000
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_09_05
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_05
+total_molecules: 2000
+molecules_fully_valency_valid: 1796
+molecules_fully_valency_valid_rate: 0.898000
+molecules_with_any_violation: 204
+molecules_with_any_violation_rate: 0.102000
+molecules_with_2plus_violations: 63
+molecules_with_2plus_violations_rate: 0.031500
+violating_atom_total: 267
+atom_total: 17581
+atom_level_valency_valid_rate: 0.984813
+avg_violating_atoms_per_molecule: 0.133500
+avg_max_excess_valency_per_molecule: 0.133500
+avg_total_excess_valency_per_molecule: 0.166500
+
+RDKit error counts:
+  AtomValence: 261
+  NoError: 1739
+
+Per-atom violation rates:
+  C: 114/11638 = 0.009795
+  F: 0/48 = 0.000000
+  N: 2/1958 = 0.001021
+  O: 151/3937 = 0.038354
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_09_075
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_075
+total_molecules: 2000
+molecules_fully_valency_valid: 1799
+molecules_fully_valency_valid_rate: 0.899500
+molecules_with_any_violation: 201
+molecules_with_any_violation_rate: 0.100500
+molecules_with_2plus_violations: 65
+molecules_with_2plus_violations_rate: 0.032500
+violating_atom_total: 266
+atom_total: 17581
+atom_level_valency_valid_rate: 0.984870
+avg_violating_atoms_per_molecule: 0.133000
+avg_max_excess_valency_per_molecule: 0.132500
+avg_total_excess_valency_per_molecule: 0.166500
+
+RDKit error counts:
+  AtomValence: 256
+  NoError: 1744
+
+Per-atom violation rates:
+  C: 115/11640 = 0.009880
+  F: 0/47 = 0.000000
+  N: 2/1962 = 0.001019
+  O: 149/3932 = 0.037894
+
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9
+total_molecules: 2000
+rdkit_valid_molecules: 1981
+rdkit_valid_rate: 0.990500
+rdkit_errors: 19
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1982 (0.991)
+components=2: 18 (0.009)
+
+--- Approximate Graph Ring Count ---
+rings=0: 183 (0.091)
+rings=1: 834 (0.417)
+rings=2: 642 (0.321)
+rings=3: 272 (0.136)
+rings=4: 65 (0.033)
+rings=5: 4 (0.002)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 183 (0.092)
+rings=1: 829 (0.418)
+rings=2: 562 (0.284)
+rings=3: 269 (0.136)
+rings=4: 78 (0.039)
+rings=5: 46 (0.023)
+rings=6: 6 (0.003)
+rings=7: 6 (0.003)
+rings=8: 1 (0.001)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 183 (0.092)
+max_ring_size=3: 210 (0.106)
+max_ring_size=4: 468 (0.236)
+max_ring_size=5: 765 (0.386)
+max_ring_size=6: 286 (0.144)
+max_ring_size=7: 57 (0.029)
+max_ring_size=8: 12 (0.006)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 688/1981 = 0.347
+C_O_single: 1229/1981 = 0.620
+C_N_single: 831/1981 = 0.419
+C_C_single: 1773/1981 = 0.895
+N_O_bond: 35/1981 = 0.018
+has_fluorine: 32/1981 = 0.016
+nitrile_C_triple_N: 214/1981 = 0.108
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_03
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03
+total_molecules: 2000
+rdkit_valid_molecules: 1477
+rdkit_valid_rate: 0.738500
+rdkit_errors: 523
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1989 (0.995)
+components=2: 11 (0.005)
+
+--- Approximate Graph Ring Count ---
+rings=0: 352 (0.176)
+rings=1: 899 (0.450)
+rings=2: 529 (0.265)
+rings=3: 167 (0.084)
+rings=4: 45 (0.022)
+rings=5: 8 (0.004)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 343 (0.232)
+rings=1: 709 (0.480)
+rings=2: 286 (0.194)
+rings=3: 112 (0.076)
+rings=4: 12 (0.008)
+rings=5: 15 (0.010)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 343 (0.232)
+max_ring_size=3: 179 (0.121)
+max_ring_size=4: 304 (0.206)
+max_ring_size=5: 395 (0.267)
+max_ring_size=6: 204 (0.138)
+max_ring_size=7: 47 (0.032)
+max_ring_size=8: 5 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1403/1477 = 0.950
+C_O_single: 788/1477 = 0.534
+C_N_single: 750/1477 = 0.508
+C_C_single: 1347/1477 = 0.912
+N_O_bond: 19/1477 = 0.013
+has_fluorine: 11/1477 = 0.007
+nitrile_C_triple_N: 89/1477 = 0.060
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_06
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06
+total_molecules: 2000
+rdkit_valid_molecules: 1631
+rdkit_valid_rate: 0.815500
+rdkit_errors: 369
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1989 (0.995)
+components=2: 11 (0.005)
+
+--- Approximate Graph Ring Count ---
+rings=0: 363 (0.181)
+rings=1: 949 (0.474)
+rings=2: 499 (0.249)
+rings=3: 149 (0.074)
+rings=4: 36 (0.018)
+rings=5: 4 (0.002)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 357 (0.219)
+rings=1: 793 (0.486)
+rings=2: 317 (0.194)
+rings=3: 128 (0.078)
+rings=4: 20 (0.012)
+rings=5: 15 (0.009)
+rings=6: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 357 (0.219)
+max_ring_size=3: 202 (0.124)
+max_ring_size=4: 338 (0.207)
+max_ring_size=5: 452 (0.277)
+max_ring_size=6: 216 (0.132)
+max_ring_size=7: 59 (0.036)
+max_ring_size=8: 7 (0.004)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1542/1631 = 0.945
+C_O_single: 842/1631 = 0.516
+C_N_single: 822/1631 = 0.504
+C_C_single: 1470/1631 = 0.901
+N_O_bond: 18/1631 = 0.011
+has_fluorine: 19/1631 = 0.012
+nitrile_C_triple_N: 92/1631 = 0.056
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_09
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09
+total_molecules: 2000
+rdkit_valid_molecules: 1641
+rdkit_valid_rate: 0.820500
+rdkit_errors: 359
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1988 (0.994)
+components=2: 12 (0.006)
+
+--- Approximate Graph Ring Count ---
+rings=0: 362 (0.181)
+rings=1: 952 (0.476)
+rings=2: 499 (0.249)
+rings=3: 147 (0.073)
+rings=4: 36 (0.018)
+rings=5: 4 (0.002)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 357 (0.218)
+rings=1: 801 (0.488)
+rings=2: 319 (0.194)
+rings=3: 128 (0.078)
+rings=4: 20 (0.012)
+rings=5: 15 (0.009)
+rings=6: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 357 (0.218)
+max_ring_size=3: 202 (0.123)
+max_ring_size=4: 342 (0.208)
+max_ring_size=5: 455 (0.277)
+max_ring_size=6: 218 (0.133)
+max_ring_size=7: 60 (0.037)
+max_ring_size=8: 7 (0.004)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1549/1641 = 0.944
+C_O_single: 849/1641 = 0.517
+C_N_single: 826/1641 = 0.503
+C_C_single: 1477/1641 = 0.900
+N_O_bond: 18/1641 = 0.011
+has_fluorine: 19/1641 = 0.012
+nitrile_C_triple_N: 92/1641 = 0.056
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_03_025
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_025
+total_molecules: 2000
+rdkit_valid_molecules: 1962
+rdkit_valid_rate: 0.981000
+rdkit_errors: 38
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1977 (0.989)
+components=2: 23 (0.011)
+
+--- Approximate Graph Ring Count ---
+rings=0: 365 (0.182)
+rings=1: 1007 (0.503)
+rings=2: 508 (0.254)
+rings=3: 104 (0.052)
+rings=4: 16 (0.008)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 362 (0.185)
+rings=1: 990 (0.505)
+rings=2: 439 (0.224)
+rings=3: 132 (0.067)
+rings=4: 20 (0.010)
+rings=5: 13 (0.007)
+rings=6: 5 (0.003)
+rings=8: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 362 (0.185)
+max_ring_size=3: 238 (0.121)
+max_ring_size=4: 362 (0.185)
+max_ring_size=5: 673 (0.343)
+max_ring_size=6: 263 (0.134)
+max_ring_size=7: 58 (0.030)
+max_ring_size=8: 6 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1577/1962 = 0.804
+C_O_single: 1093/1962 = 0.557
+C_N_single: 882/1962 = 0.450
+C_C_single: 1740/1962 = 0.887
+N_O_bond: 20/1962 = 0.010
+has_fluorine: 30/1962 = 0.015
+nitrile_C_triple_N: 124/1962 = 0.063
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_03_05
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_05
+total_molecules: 2000
+rdkit_valid_molecules: 1700
+rdkit_valid_rate: 0.850000
+rdkit_errors: 300
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1981 (0.991)
+components=2: 19 (0.009)
+
+--- Approximate Graph Ring Count ---
+rings=0: 347 (0.173)
+rings=1: 965 (0.482)
+rings=2: 521 (0.261)
+rings=3: 129 (0.065)
+rings=4: 32 (0.016)
+rings=5: 6 (0.003)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 341 (0.201)
+rings=1: 859 (0.505)
+rings=2: 365 (0.215)
+rings=3: 104 (0.061)
+rings=4: 15 (0.009)
+rings=5: 11 (0.006)
+rings=6: 3 (0.002)
+rings=8: 1 (0.001)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 341 (0.201)
+max_ring_size=3: 224 (0.132)
+max_ring_size=4: 326 (0.192)
+max_ring_size=5: 529 (0.311)
+max_ring_size=6: 226 (0.133)
+max_ring_size=7: 50 (0.029)
+max_ring_size=8: 4 (0.002)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1502/1700 = 0.884
+C_O_single: 925/1700 = 0.544
+C_N_single: 806/1700 = 0.474
+C_C_single: 1539/1700 = 0.905
+N_O_bond: 17/1700 = 0.010
+has_fluorine: 24/1700 = 0.014
+nitrile_C_triple_N: 100/1700 = 0.059
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_03_075
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_075
+total_molecules: 2000
+rdkit_valid_molecules: 1507
+rdkit_valid_rate: 0.753500
+rdkit_errors: 493
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1983 (0.992)
+components=2: 17 (0.009)
+
+--- Approximate Graph Ring Count ---
+rings=0: 332 (0.166)
+rings=1: 918 (0.459)
+rings=2: 548 (0.274)
+rings=3: 149 (0.074)
+rings=4: 44 (0.022)
+rings=5: 9 (0.004)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 322 (0.214)
+rings=1: 753 (0.500)
+rings=2: 317 (0.210)
+rings=3: 91 (0.060)
+rings=4: 13 (0.009)
+rings=5: 9 (0.006)
+rings=6: 2 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 322 (0.214)
+max_ring_size=3: 206 (0.137)
+max_ring_size=4: 308 (0.204)
+max_ring_size=5: 431 (0.286)
+max_ring_size=6: 187 (0.124)
+max_ring_size=7: 49 (0.033)
+max_ring_size=8: 4 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1447/1507 = 0.960
+C_O_single: 802/1507 = 0.532
+C_N_single: 755/1507 = 0.501
+C_C_single: 1396/1507 = 0.926
+N_O_bond: 14/1507 = 0.009
+has_fluorine: 21/1507 = 0.014
+nitrile_C_triple_N: 84/1507 = 0.056
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_06_025
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_025
+total_molecules: 2000
+rdkit_valid_molecules: 1960
+rdkit_valid_rate: 0.980000
+rdkit_errors: 40
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1983 (0.992)
+components=2: 17 (0.009)
+
+--- Approximate Graph Ring Count ---
+rings=0: 403 (0.202)
+rings=1: 1003 (0.501)
+rings=2: 451 (0.226)
+rings=3: 129 (0.065)
+rings=4: 14 (0.007)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 398 (0.203)
+rings=1: 985 (0.503)
+rings=2: 366 (0.187)
+rings=3: 169 (0.086)
+rings=4: 24 (0.012)
+rings=5: 13 (0.007)
+rings=6: 3 (0.002)
+rings=7: 1 (0.001)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 398 (0.203)
+max_ring_size=3: 207 (0.106)
+max_ring_size=4: 375 (0.191)
+max_ring_size=5: 617 (0.315)
+max_ring_size=6: 277 (0.141)
+max_ring_size=7: 81 (0.041)
+max_ring_size=8: 5 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1620/1960 = 0.827
+C_O_single: 1077/1960 = 0.549
+C_N_single: 915/1960 = 0.467
+C_C_single: 1725/1960 = 0.880
+N_O_bond: 30/1960 = 0.015
+has_fluorine: 24/1960 = 0.012
+nitrile_C_triple_N: 144/1960 = 0.073
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_06_05
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05
+total_molecules: 2000
+rdkit_valid_molecules: 1958
+rdkit_valid_rate: 0.979000
+rdkit_errors: 42
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1981 (0.991)
+components=2: 19 (0.009)
+
+--- Approximate Graph Ring Count ---
+rings=0: 405 (0.203)
+rings=1: 1008 (0.504)
+rings=2: 459 (0.230)
+rings=3: 114 (0.057)
+rings=4: 14 (0.007)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 400 (0.204)
+rings=1: 990 (0.506)
+rings=2: 373 (0.191)
+rings=3: 158 (0.081)
+rings=4: 20 (0.010)
+rings=5: 13 (0.007)
+rings=6: 3 (0.002)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 400 (0.204)
+max_ring_size=3: 202 (0.103)
+max_ring_size=4: 374 (0.191)
+max_ring_size=5: 615 (0.314)
+max_ring_size=6: 281 (0.144)
+max_ring_size=7: 80 (0.041)
+max_ring_size=8: 6 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1630/1958 = 0.832
+C_O_single: 1068/1958 = 0.545
+C_N_single: 916/1958 = 0.468
+C_C_single: 1721/1958 = 0.879
+N_O_bond: 28/1958 = 0.014
+has_fluorine: 25/1958 = 0.013
+nitrile_C_triple_N: 139/1958 = 0.071
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_06_075
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_075
+total_molecules: 2000
+rdkit_valid_molecules: 1748
+rdkit_valid_rate: 0.874000
+rdkit_errors: 252
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1986 (0.993)
+components=2: 14 (0.007)
+
+--- Approximate Graph Ring Count ---
+rings=0: 385 (0.193)
+rings=1: 972 (0.486)
+rings=2: 476 (0.238)
+rings=3: 145 (0.072)
+rings=4: 19 (0.009)
+rings=5: 3 (0.002)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 375 (0.215)
+rings=1: 875 (0.501)
+rings=2: 324 (0.185)
+rings=3: 142 (0.081)
+rings=4: 17 (0.010)
+rings=5: 12 (0.007)
+rings=6: 2 (0.001)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 375 (0.215)
+max_ring_size=3: 185 (0.106)
+max_ring_size=4: 350 (0.200)
+max_ring_size=5: 515 (0.295)
+max_ring_size=6: 248 (0.142)
+max_ring_size=7: 70 (0.040)
+max_ring_size=8: 5 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1557/1748 = 0.891
+C_O_single: 938/1748 = 0.537
+C_N_single: 865/1748 = 0.495
+C_C_single: 1569/1748 = 0.898
+N_O_bond: 20/1748 = 0.011
+has_fluorine: 24/1748 = 0.014
+nitrile_C_triple_N: 122/1748 = 0.070
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_09_025
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_025
+total_molecules: 2000
+rdkit_valid_molecules: 1972
+rdkit_valid_rate: 0.986000
+rdkit_errors: 28
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1986 (0.993)
+components=2: 14 (0.007)
+
+--- Approximate Graph Ring Count ---
+rings=0: 386 (0.193)
+rings=1: 995 (0.497)
+rings=2: 496 (0.248)
+rings=3: 111 (0.056)
+rings=4: 12 (0.006)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 385 (0.195)
+rings=1: 979 (0.496)
+rings=2: 410 (0.208)
+rings=3: 151 (0.077)
+rings=4: 24 (0.012)
+rings=5: 23 (0.012)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 385 (0.195)
+max_ring_size=3: 197 (0.100)
+max_ring_size=4: 372 (0.189)
+max_ring_size=5: 649 (0.329)
+max_ring_size=6: 278 (0.141)
+max_ring_size=7: 81 (0.041)
+max_ring_size=8: 10 (0.005)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1599/1972 = 0.811
+C_O_single: 1102/1972 = 0.559
+C_N_single: 899/1972 = 0.456
+C_C_single: 1719/1972 = 0.872
+N_O_bond: 38/1972 = 0.019
+has_fluorine: 40/1972 = 0.020
+nitrile_C_triple_N: 131/1972 = 0.066
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_09_05
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_05
+total_molecules: 2000
+rdkit_valid_molecules: 1739
+rdkit_valid_rate: 0.869500
+rdkit_errors: 261
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1986 (0.993)
+components=2: 14 (0.007)
+
+--- Approximate Graph Ring Count ---
+rings=0: 372 (0.186)
+rings=1: 958 (0.479)
+rings=2: 499 (0.249)
+rings=3: 143 (0.071)
+rings=4: 27 (0.013)
+rings=5: 1 (0.001)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 366 (0.210)
+rings=1: 848 (0.488)
+rings=2: 347 (0.200)
+rings=3: 137 (0.079)
+rings=4: 23 (0.013)
+rings=5: 18 (0.010)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 366 (0.210)
+max_ring_size=3: 190 (0.109)
+max_ring_size=4: 344 (0.198)
+max_ring_size=5: 529 (0.304)
+max_ring_size=6: 236 (0.136)
+max_ring_size=7: 67 (0.039)
+max_ring_size=8: 7 (0.004)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1538/1739 = 0.884
+C_O_single: 954/1739 = 0.549
+C_N_single: 828/1739 = 0.476
+C_C_single: 1551/1739 = 0.892
+N_O_bond: 30/1739 = 0.017
+has_fluorine: 31/1739 = 0.018
+nitrile_C_triple_N: 109/1739 = 0.063
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_09_075
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_075
+total_molecules: 2000
+rdkit_valid_molecules: 1744
+rdkit_valid_rate: 0.872000
+rdkit_errors: 256
+
+--- Atom Count ---
+n_atoms=9: 1668 (0.834)
+n_atoms=8: 263 (0.132)
+n_atoms=7: 56 (0.028)
+n_atoms=6: 10 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1986 (0.993)
+components=2: 14 (0.007)
+
+--- Approximate Graph Ring Count ---
+rings=0: 373 (0.186)
+rings=1: 954 (0.477)
+rings=2: 503 (0.252)
+rings=3: 141 (0.070)
+rings=4: 27 (0.013)
+rings=5: 2 (0.001)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 367 (0.210)
+rings=1: 847 (0.486)
+rings=2: 353 (0.202)
+rings=3: 137 (0.079)
+rings=4: 22 (0.013)
+rings=5: 18 (0.010)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 367 (0.210)
+max_ring_size=3: 190 (0.109)
+max_ring_size=4: 346 (0.198)
+max_ring_size=5: 524 (0.300)
+max_ring_size=6: 241 (0.138)
+max_ring_size=7: 69 (0.040)
+max_ring_size=8: 7 (0.004)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1539/1744 = 0.882
+C_O_single: 958/1744 = 0.549
+C_N_single: 831/1744 = 0.476
+C_C_single: 1553/1744 = 0.890
+N_O_bond: 33/1744 = 0.019
+has_fluorine: 31/1744 = 0.018
+nitrile_C_triple_N: 109/1744 = 0.062
+
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1990/2000
+Uniqueness: 0.995000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.082544
+Fingerprint diversity: 0.917456
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_03
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1964/2000
+Uniqueness: 0.982000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.108860
+Fingerprint diversity: 0.891140
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_06
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1954/2000
+Uniqueness: 0.977000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.108787
+Fingerprint diversity: 0.891213
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_09
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1954/2000
+Uniqueness: 0.977000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.109035
+Fingerprint diversity: 0.890965
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_03_025
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_025
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1978/2000
+Uniqueness: 0.989000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.098890
+Fingerprint diversity: 0.901110
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_03_05
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_05
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1971/2000
+Uniqueness: 0.985500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.105261
+Fingerprint diversity: 0.894739
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_03_075
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_03_075
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1974/2000
+Uniqueness: 0.987000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.108929
+Fingerprint diversity: 0.891071
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_06_025
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_025
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1969/2000
+Uniqueness: 0.984500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.097742
+Fingerprint diversity: 0.902258
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_06_05
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1963/2000
+Uniqueness: 0.981500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.098522
+Fingerprint diversity: 0.901478
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_06_075
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_075
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1959/2000
+Uniqueness: 0.979500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.103547
+Fingerprint diversity: 0.896453
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_09_025
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_025
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1973/2000
+Uniqueness: 0.986500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.096869
+Fingerprint diversity: 0.903131
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_09_05
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_05
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1973/2000
+Uniqueness: 0.986500
+
+--- Diversity ---
+Average Tanimoto similarity: 0.102596
+Fingerprint diversity: 0.897404
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_09_075
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_09_075
+Total valid molecules used: 2000
+
+--- Uniqueness ---
+Unique valid SMILES: 1976/2000
+Uniqueness: 0.988000
+
+--- Diversity ---
+Average Tanimoto similarity: 0.102973
+Fingerprint diversity: 0.897027
+
+(cometh) bash-4.4$python posthoc_filter_carbonyl.py --input_folder /home/ryp8rx/outputs_qm9_hard_06_05 --output_folder /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+
+=== Post-hoc Filtering Report ===
+input_folder: /home/ryp8rx/outputs_qm9_hard_06_05
+output_folder: /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+total_molecules_checked: 38000
+rdkit_valid: 35832
+rdkit_valid_rate: 0.942947
+rdkit_valid_and_carbonyl: 32475
+rdkit_valid_and_carbonyl_rate: 0.854605
+kept_rdkit_valid_carbonyl_connected: 32211
+kept_rate: 0.847658
+saved_to: /home/ryp8rx/outputs_qm9_hard_06_05_filtered/filtered_valid_carbonyl_samples.txt
+(cometh) bash-4.4$python posthoc_filter_carbonyl.py --input_folder /home/ryp8rx/outputs_qm9_hard_06_05 --output_folder /home/ryp8rx/outputs_qm9_hard_06_05_filtered --max_molecules 2000
+
+=== Post-hoc Filtering Report ===
+input_folder: /home/ryp8rx/outputs_qm9_hard_06_05
+output_folder: /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+total_molecules_checked: 2000
+rdkit_valid: 1958
+rdkit_valid_rate: 0.979000
+rdkit_valid_and_carbonyl: 1731
+rdkit_valid_and_carbonyl_rate: 0.865500
+kept_rdkit_valid_carbonyl_connected: 1719
+kept_rate: 0.859500
+saved_to: /home/ryp8rx/outputs_qm9_hard_06_05_filtered/filtered_valid_carbonyl_samples.txt
+
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+Total valid molecules used: 1719
+
+--- Uniqueness ---
+Unique valid SMILES: 1684/1719
+Uniqueness: 0.979639
+
+--- Diversity ---
+Average Tanimoto similarity: 0.108164
+Fingerprint diversity: 0.891836
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+total_molecules: 1719
+rdkit_valid_molecules: 1719
+rdkit_valid_rate: 1.000000
+rdkit_errors: 0
+
+--- Atom Count ---
+n_atoms=9: 1435 (0.835)
+n_atoms=8: 225 (0.131)
+n_atoms=7: 47 (0.027)
+n_atoms=6: 9 (0.005)
+n_atoms=5: 2 (0.001)
+n_atoms=3: 1 (0.001)
+
+--- Connectivity ---
+components=1: 1719 (1.000)
+
+--- Approximate Graph Ring Count ---
+rings=0: 388 (0.226)
+rings=1: 849 (0.494)
+rings=2: 384 (0.223)
+rings=3: 90 (0.052)
+rings=4: 8 (0.005)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 388 (0.226)
+rings=1: 849 (0.494)
+rings=2: 316 (0.184)
+rings=3: 138 (0.080)
+rings=4: 15 (0.009)
+rings=5: 10 (0.006)
+rings=6: 2 (0.001)
+rings=9: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 388 (0.226)
+max_ring_size=3: 187 (0.109)
+max_ring_size=4: 340 (0.198)
+max_ring_size=5: 486 (0.283)
+max_ring_size=6: 243 (0.141)
+max_ring_size=7: 69 (0.040)
+max_ring_size=8: 6 (0.003)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 1618/1719 = 0.941
+C_O_single: 911/1719 = 0.530
+C_N_single: 865/1719 = 0.503
+C_C_single: 1548/1719 = 0.901
+N_O_bond: 22/1719 = 0.013
+has_fluorine: 18/1719 = 0.010
+nitrile_C_triple_N: 116/1719 = 0.067
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_hard_06_05_filtered
+total_molecules: 1719
+molecules_fully_valency_valid: 1718
+molecules_fully_valency_valid_rate: 0.999418
+molecules_with_any_violation: 1
+molecules_with_any_violation_rate: 0.000582
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 1
+atom_total: 15111
+atom_level_valency_valid_rate: 0.999934
+avg_violating_atoms_per_molecule: 0.000582
+avg_max_excess_valency_per_molecule: 0.000582
+avg_total_excess_valency_per_molecule: 0.000582
+
+RDKit error counts:
+  NoError: 1719
+
+Per-atom violation rates:
+  C: 0/9947 = 0.000000
+  F: 0/22 = 0.000000
+  N: 1/1662 = 0.000602
+  O: 0/3480 = 0.000000
+
+(cometh) bash-4.4$python posthoc_filter_carbonyl.py --input_folder /home/ryp8rx/outputs_qm9 --output_folder /home/ryp8rx/outputs
+_qm9_filtered --max_molecules 2000
+
+=== Post-hoc Filtering Report ===
+input_folder: /home/ryp8rx/outputs_qm9
+output_folder: /home/ryp8rx/outputs_qm9_filtered
+total_molecules_checked: 2000
+rdkit_valid: 1981
+rdkit_valid_rate: 0.990500
+rdkit_valid_and_carbonyl: 729
+rdkit_valid_and_carbonyl_rate: 0.364500
+kept_rdkit_valid_carbonyl_connected: 721
+kept_rate: 0.360500
+saved_to: /home/ryp8rx/outputs_qm9_filtered/filtered_valid_carbonyl_samples.txt
+
+(cometh) bash-4.4$python diversity_uniqueness.py --folder /home/ryp8rx/outputs_qm9_filtered
+
+=== Uniqueness and Diversity Report ===
+folder: /home/ryp8rx/outputs_qm9_filtered
+Total valid molecules used: 721
+
+--- Uniqueness ---
+Unique valid SMILES: 714/721
+Uniqueness: 0.990291
+
+--- Diversity ---
+Average Tanimoto similarity: 0.109981
+Fingerprint diversity: 0.890019
+(cometh) bash-4.4$python evaluate_structural_constraints.py --folder /home/ryp8rx/outputs_qm9_filtered
+
+=== Structural Constraint Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_filtered
+total_molecules: 721
+rdkit_valid_molecules: 721
+rdkit_valid_rate: 1.000000
+rdkit_errors: 0
+
+--- Atom Count ---
+n_atoms=9: 624 (0.865)
+n_atoms=8: 81 (0.112)
+n_atoms=7: 13 (0.018)
+n_atoms=6: 3 (0.004)
+
+--- Connectivity ---
+components=1: 721 (1.000)
+
+--- Approximate Graph Ring Count ---
+rings=0: 104 (0.144)
+rings=1: 348 (0.483)
+rings=2: 202 (0.280)
+rings=3: 62 (0.086)
+rings=4: 5 (0.007)
+
+--- RDKit Ring Count (valid RDKit molecules only) ---
+rings=0: 104 (0.144)
+rings=1: 348 (0.483)
+rings=2: 172 (0.239)
+rings=3: 77 (0.107)
+rings=4: 13 (0.018)
+rings=5: 6 (0.008)
+rings=7: 1 (0.001)
+
+--- Max Ring Size (valid RDKit molecules only) ---
+max_ring_size=0: 104 (0.144)
+max_ring_size=3: 88 (0.122)
+max_ring_size=4: 165 (0.229)
+max_ring_size=5: 227 (0.315)
+max_ring_size=6: 109 (0.151)
+max_ring_size=7: 23 (0.032)
+max_ring_size=8: 5 (0.007)
+
+--- Substructure Presence (valid RDKit molecules only) ---
+carbonyl_C_eq_O: 681/721 = 0.945
+C_O_single: 380/721 = 0.527
+C_N_single: 388/721 = 0.538
+C_C_single: 637/721 = 0.883
+N_O_bond: 6/721 = 0.008
+has_fluorine: 7/721 = 0.010
+nitrile_C_triple_N: 51/721 = 0.071
+(cometh) bash-4.4$python evaluate_valency_metrics.py --folder /home/ryp8rx/outputs_qm9_filtered
+
+=== Valency Diagnostic Report ===
+folder: /home/ryp8rx/outputs_qm9_filtered
+total_molecules: 721
+molecules_fully_valency_valid: 721
+molecules_fully_valency_valid_rate: 1.000000
+molecules_with_any_violation: 0
+molecules_with_any_violation_rate: 0.000000
+molecules_with_2plus_violations: 0
+molecules_with_2plus_violations_rate: 0.000000
+violating_atom_total: 0
+atom_total: 6373
+atom_level_valency_valid_rate: 1.000000
+avg_violating_atoms_per_molecule: 0.000000
+avg_max_excess_valency_per_molecule: 0.000000
+avg_total_excess_valency_per_molecule: 0.000000
+
+RDKit error counts:
+  NoError: 721
+
+Per-atom violation rates:
+  C: 0/4294 = 0.000000
+  F: 0/8 = 0.000000
+  N: 0/722 = 0.000000
+  O: 0/1349 = 0.000000

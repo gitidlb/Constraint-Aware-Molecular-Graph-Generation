@@ -1,0 +1,90 @@
+timing: None, prob: None
+test duration 1: 113.23s
+test duration 2: 115.52s
+test duration 3: 112.93s
+test duration 4: 113.45s
+test duration 5: 113.33s
+
+timing: 0.3, prob: None
+test duration 1: 116.27s
+test duration 2: 116.64s
+test duration 3: 120.02s
+test duration 4: 119.04s
+test duration 5: 117.90s
+
+timing: 0.3, prob: 0.25
+test duration 1: 115.99s
+test duration 2: 115.42s
+test duration 3: 117.68s
+test duration 4: 119.83s
+test duration 5: 115.51s
+
+timing: 0.3, prob: 0.5
+test duration 1: 109.09s
+test duration 2: 109.73s
+test duration 3: 110.06s
+test duration 4: 110.26s
+test duration 5: 110.73s
+
+timing: 0.3, prob: 0.75
+test duration 1: 118.03s
+test duration 2: 117.62s
+test duration 3: 117.36s
+test duration 4: 116.72s
+test duration 5: 118.15s
+
+timing: 0.6, prob: None
+test duration 1: 110.62s
+test duration 2: 111.99s
+test duration 3: 112.08s
+test duration 4: 113.37s
+test duration 5: 111.64s
+
+timing: 0.6, prob: 0.25
+test duration 1: 114.69s
+test duration 2: 115.46s
+test duration 3: 115.46s
+test duration 4: 114.98s
+test duration 5: 115.28s
+
+timing: 0.6, prob: 0.5
+test duration 1: 115.58s
+test duration 2: 115.61s
+test duration 3: 117.19s
+test duration 4: 117.99s
+test duration 5: 116.22s
+
+timing: 0.6, prob: 0.75
+test duration 1: 110.95s
+test duration 2: 112.48s
+test duration 3: 113.14s
+test duration 4: 113.39s
+test duration 5: 114.20s
+
+timing: 0.9, prob: None
+test duration 1: 114.57s
+test duration 2: 115.52s
+test duration 3: 114.81s
+test duration 4: 115.33s
+test duration 5: 115.58s
+
+timing: 0.9, prob: 0.25
+test duration 1: 108.55s
+test duration 2: 110.19s
+test duration 3: 110.10s
+test duration 4: 110.52s
+test duration 5: 109.61s
+
+timing: 0.9, prob: 0.5
+test duration 1: 109.23s
+test duration 2: 110.98s
+test duration 3: 111.21s
+test duration 4: 111.45s
+test duration 5: 110.81s
+
+timing: 0.9, prob: 0.75
+test duration 1: 114.76s
+test duration 2: 116.51s
+test duration 3: 114.62s
+test duration 4: 115.00s
+test duration 5: 115.53s
